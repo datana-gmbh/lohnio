@@ -1,4 +1,5 @@
 # vim: set tabstop=8 softtabstop=8 noexpandtab:
+APP_ENV?=dev
 NOW=`TZ='Europe/Berlin' date +'%Y.%m.%d.%H%M'`
 APP_ENV=test
 CONNECTION_NAME_DEFAULT=default
