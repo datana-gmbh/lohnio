@@ -60,7 +60,7 @@ return static function (RectorConfig $rectorConfig): void {
         PreferPHPUnitThisCallRector::class,
         ReplaceTestAnnotationWithPrefixedFunctionRector::class,
 
-        // @see https://github.com/datana-gmbh/project-name/pull/2355#discussion_r1023816626
+        // @see https://github.com/datana-gmbh/lohnio/pull/2355#discussion_r1023816626
         ReturnNeverTypeRector::class => [
             'tests/Functional/*Test.php',
             'tests/Integration/*Test.php',

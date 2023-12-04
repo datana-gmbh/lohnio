@@ -18,7 +18,7 @@ return static fn (Configuration $config): Configuration => $config
     ->addNamedFilter(NamedFilter::fromString('oskarstark/symfony-http-responder'))
     ->addNamedFilter(NamedFilter::fromString('thecodingmachine/safe'))
     ->addNamedFilter(NamedFilter::fromString('webmozart/assert'))
-    ->setAdditionalFilesFor('datana-gmbh/project-name', [
+    ->setAdditionalFilesFor('datana-gmbh/lohnio', [
         __FILE__,
         ...array_merge(
             Glob::glob(__DIR__.'/bin/*.php'),

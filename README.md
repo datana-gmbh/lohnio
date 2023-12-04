@@ -58,17 +58,17 @@ parameters:
 
 Please have a look at [`CONTRIBUTING.md`](.github/CONTRIBUTING.md).
 
-[build-status-develop-environment]: https://github.com/datana-gmbh/project-name/workflows/Environment%20(develop)/badge.svg?branch=develop
-[build-status-develop-php]: https://github.com/datana-gmbh/project-name/workflows/PHP/badge.svg?branch=develop
-[build-status-develop-twig]: https://github.com/datana-gmbh/project-name/workflows/Twig/badge.svg?branch=develop
-[build-status-develop-yaml]: https://github.com/datana-gmbh/project-name/workflows/YAML/badge.svg?branch=develop
-[build-status-master-environment]: https://github.com/datana-gmbh/project-name/workflows/Environment%20(master)/badge.svg?branch=master
-[build-status-master-php]: https://github.com/datana-gmbh/project-name/workflows/PHP/badge.svg?branch=master
-[build-status-master-release]: https://github.com/datana-gmbh/project-name/workflows/Release/badge.svg?branch=master
-[build-status-master-twig]: https://github.com/datana-gmbh/project-name/workflows/Twig/badge.svg?branch=master
-[build-status-master-yaml]: https://github.com/datana-gmbh/project-name/workflows/YAML/badge.svg?branch=master
-[coverage-status-develop]: https://codecov.io/gh/datana-gmbh/project-name/branch/develop/graph/badge.svg?token=KRaxYZkSDu
-[coverage-status-master]: https://codecov.io/gh/datana-gmbh/project-name/branch/master/graph/badge.svg?token=KRaxYZkSDu
+[build-status-develop-environment]: https://github.com/datana-gmbh/lohnio/workflows/Environment%20(develop)/badge.svg?branch=develop
+[build-status-develop-php]: https://github.com/datana-gmbh/lohnio/workflows/PHP/badge.svg?branch=develop
+[build-status-develop-twig]: https://github.com/datana-gmbh/lohnio/workflows/Twig/badge.svg?branch=develop
+[build-status-develop-yaml]: https://github.com/datana-gmbh/lohnio/workflows/YAML/badge.svg?branch=develop
+[build-status-master-environment]: https://github.com/datana-gmbh/lohnio/workflows/Environment%20(master)/badge.svg?branch=master
+[build-status-master-php]: https://github.com/datana-gmbh/lohnio/workflows/PHP/badge.svg?branch=master
+[build-status-master-release]: https://github.com/datana-gmbh/lohnio/workflows/Release/badge.svg?branch=master
+[build-status-master-twig]: https://github.com/datana-gmbh/lohnio/workflows/Twig/badge.svg?branch=master
+[build-status-master-yaml]: https://github.com/datana-gmbh/lohnio/workflows/YAML/badge.svg?branch=master
+[coverage-status-develop]: https://codecov.io/gh/datana-gmbh/lohnio/branch/develop/graph/badge.svg?token=KRaxYZkSDu
+[coverage-status-master]: https://codecov.io/gh/datana-gmbh/lohnio/branch/master/graph/badge.svg?token=KRaxYZkSDu
 
-[actions]: https://github.com/datana-gmbh/project-name/actions
-[codecov]: https://codecov.io/gh/datana-gmbh/project-name
+[actions]: https://github.com/datana-gmbh/lohnio/actions
+[codecov]: https://codecov.io/gh/datana-gmbh/lohnio
