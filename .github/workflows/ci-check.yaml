@@ -1,0 +1,50 @@
+name: "Check"
+
+on: # yamllint disable-line rule:truthy
+    pull_request:
+        paths:
+            - ".github/workflows/ci-check.yaml"
+            - "**"
+    push:
+        branches:
+            - "develop"
+            - "master"
+        paths:
+            - ".github/workflows/ci-check.yaml"
+            - "**"
+
+jobs:
+    check:
+        name: "in ${{ matrix.directory }}/ directory"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                directory:
+                    - "tests"
+
+        steps:
+            -
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+
+            -
+                name: "Search for \"@group\" annotation in ${{ matrix.directory }}/ directory"
+                working-directory: "${{ matrix.directory }}"
+                run: "bash ../.github/scripts/check/search-group-annotation-in-tests.sh"
+
+            -
+                name: "Check abstractions in Integration TestCases"
+                working-directory: "${{ matrix.directory }}"
+                run: bash ../.github/scripts/check/check-abstractions-in-testcases.sh Integration "App\Tests\Integration\IntegrationTestCase" -p FunctionalTestCase -p WebTestCase -p UnitTestCase -p TestCase
+
+            -
+                name: "Check abstractions in Functional TestCases"
+                working-directory: "${{ matrix.directory }}"
+                run: bash ../.github/scripts/check/check-abstractions-in-testcases.sh Functional "App\Tests\Functional\FunctionalTestCase" -p IntegrationTestCase -p KernelTestCase -p UnitTestCase -p TestCase
+
+            -
+                name: "Check abstractions in Unit TestCases"
+                working-directory: "${{ matrix.directory }}"
+                run: bash ../.github/scripts/check/check-abstractions-in-testcases.sh Unit "App\Tests\Unit\UnitTestCase" -p IntegrationTestCase -p KernelTestCase -p FunctionalTestCase -p WebTestCase

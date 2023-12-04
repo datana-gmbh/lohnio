@@ -1,0 +1,81 @@
+name: "Actions"
+
+on: # yamllint disable-line rule:truthy
+    pull_request_target:
+        types:
+            - "labeled"
+
+env:
+    DATANA_BOT_EMAIL: "bot@datana.rocks"
+    DATANA_BOT_NAME: "datana-bot"
+    REQUIRED_PHP_EXTENSIONS: "ctype, filter, pdo_pgsql"
+
+jobs:
+    regenerate-phpstan-baseline:
+        name: "Regenerate PHPStan baseline"
+
+        runs-on: "ubuntu-latest"
+
+        if: contains(github.event.pull_request.labels.*.name, 'Regenerate PHPStan baseline')
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            -
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+                    token: "${{ secrets.DATANA_BOT_TOKEN }}"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@2.28.0"
+                with:
+                    coverage: "none"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Prepare environment"
+                run: "cp .env.test .env.local"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@2.2.0"
+
+            -
+                name: "Warm up application cache"
+                run: "bin/console cache:warmup --env=dev"
+
+            -
+                name: "Cache cache directory for phpstan/phpstan"
+                uses: "actions/cache@v3"
+                with:
+                    path: ".build/phpstan"
+                    key: "php-${{ matrix.php-version }}-phpstan-${{ github.sha }}"
+                    restore-keys: "php-${{ matrix.php-version }}-phpstan-"
+
+            -
+                name: "Run a static code analysis with phpstan/phpstan and default configuration and regenerate the baseline"
+                run: "vendor/bin/phpstan analyse  --generate-baseline=phpstan-baseline.neon --no-progress --memory-limit=-1"
+
+            -
+                name: "Remove label: Regenerate PHPStan baseline"
+                uses: "actions-ecosystem/action-remove-labels@v1.3.0"
+                with:
+                    labels: 'Regenerate PHPStan baseline'
+
+            -
+                name: "Commit baseline file"
+                uses: "stefanzweifel/git-auto-commit-action@v5.0.0"
+                with:
+                    branch: "${{ github.head_ref }}"
+                    commit_author: "${{ env.DATANA_BOT_NAME }} <${{ env.DATANA_BOT_EMAIL }}>"
+                    commit_message: "Fix: Regenerate PHPStan baseline"
+                    commit_user_email: "${{ env.DATANA_BOT_EMAIL }}"
+                    commit_user_name: "${{ env.DATANA_BOT_NAME }}"

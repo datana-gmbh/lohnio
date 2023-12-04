@@ -1,0 +1,68 @@
+name: project-name
+
+type: php:8.3
+
+timezone: Europe/Berlin
+
+runtime:
+    extensions:
+        - apcu
+        - blackfire
+        - ctype
+        - pdo_pgsql
+        - sodium
+
+variables:
+    php:
+        opcache.preload: /app/config/preload.php
+
+dependencies:
+    php:
+        composer/composer: "^2"
+
+relationships:
+    database: "main:postgresql"
+
+build:
+    flavor: none
+
+disk: 512
+
+web:
+    locations:
+        "/":
+            root: "public"
+            expires: 1h
+            passthru: "/index.php"
+
+mounts:
+    "/var": { source: local, source_path: var }
+
+hooks:
+    build: |
+        set -x -e
+
+        curl -fs https://get.symfony.com/cloud/configurator | bash
+        NODE_VERSION=18.12 symfony-build
+
+    deploy: |
+        set -x -e
+
+        symfony-deploy
+
+crons:
+    snapshot:
+        # Take a snapshot automatically every night at 3 am (UTC).
+        spec: '0 3 * * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                croncape platform backup:create --yes --no-wait
+            fi
+
+    renewcert:
+        # Force a redeploy at 4 am (UTC) on the 14th and 28th of every month.
+        spec: '0 4 14,28 * *'
+        cmd: |
+            if [ "$PLATFORM_BRANCH" = master ]; then
+                croncape platform redeploy --yes --no-wait
+            fi

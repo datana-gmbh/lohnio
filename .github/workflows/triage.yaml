@@ -1,0 +1,62 @@
+name: "Triage"
+
+on: # yamllint disable-line rule:truthy
+    pull_request: null
+
+jobs:
+    label:
+        name: "Label"
+
+        runs-on: "ubuntu-latest"
+
+        if: >
+            github.event_name == 'pull_request' &&
+            github.event.pull_request.draft == false && (
+              github.event.action == 'opened' ||
+              github.event.action == 'reopened' ||
+              github.event.action == 'synchronize'
+            ) && (
+              github.actor != 'dependabot[bot]'
+            )
+
+        steps:
+            -
+                name: "Add labels based on modified files"
+                uses: "actions/labeler@v4"
+                with:
+                    repo-token: "${{ secrets.DATANA_BOT_TOKEN }}"
+
+            -
+                name: "Add labels based on branch name"
+                if: "github.event.action == 'opened'"
+                uses: "actions/github-script@v7"
+                with:
+                    github-token: "${{ secrets.DATANA_BOT_TOKEN }}"
+                    script: |
+                        const branchPrefixLabels = {
+                            bug: "bug",
+                            enhancement: "feature",
+                            feature: "feature",
+                            fix: "bug",
+                            bugfix: "bug",
+                        }
+
+                        const pullRequest = context.payload.pull_request
+                        const repository = context.repo
+
+                        const branchName = pullRequest.head.ref
+
+                        const matches = branchName.match(new RegExp('^([^/]+)\/'));
+
+                        if (matches instanceof Array && branchPrefixLabels.hasOwnProperty(matches[1])) {
+                            const label = branchPrefixLabels[matches[1]]
+
+                            github.rest.issues.addLabels({
+                                issue_number: pullRequest.number,
+                                labels: [
+                                    label
+                                ],
+                                owner: repository.owner,
+                                repo: repository.repo,
+                            });
+                        }

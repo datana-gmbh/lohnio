@@ -1,0 +1,38 @@
+name: "Spelling"
+
+on: # yamllint disable-line rule:truthy
+    pull_request:
+        paths:
+            - ".github/workflows/ci-spelling.yaml"
+            - "**"
+    push:
+        branches:
+            - "develop"
+            - "master"
+        paths:
+            - ".github/workflows/ci-spelling.yaml"
+            - "**"
+
+jobs:
+    check:
+        name: "in ${{ matrix.directory }}/ directory"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                directory:
+                    - "config"
+                    - "src"
+                    - "tests"
+                    - "templates"
+
+        steps:
+            -
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+
+            -
+                name: "Check spelling for \"E-Mail-Adresse\" in ${{ matrix.directory }}/ directory"
+                working-directory: "${{ matrix.directory }}"
+                run: "bash ../.github/scripts/spell-checks/check-spelling-emailadresse.sh"

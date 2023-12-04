@@ -1,0 +1,59 @@
+name: "YAML"
+
+on: # yamllint disable-line rule:truthy
+    pull_request:
+        paths:
+            - "**.ya?ml"
+    push:
+        branches:
+            - "develop"
+            - "master"
+        paths:
+            - "**.ya?ml"
+
+env:
+    DATANA_BOT_EMAIL: "bot@datana.rocks"
+    DATANA_BOT_NAME: "datana-bot"
+
+jobs:
+    lint:
+        name: "Lint"
+
+        runs-on: "ubuntu-latest"
+
+        steps:
+            # workaround for missing secret in fork PRs - see https://github.com/actions/checkout/issues/298
+            # see https://github.com/rectorphp/rector/commit/d395e1c28b8e6a56711dcc2e10490a82965850e4
+            -   if: github.actor != 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+                    # Must be used to be able to commit changed files
+                    token: "${{ secrets.DATANA_BOT_TOKEN }}"
+
+            # in forks, the token is not available - so we cannot use it
+            -   if: github.actor == 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+
+            -   run: "go install github.com/google/yamlfmt/cmd/yamlfmt@v0.7.1 && ~/go/bin/yamlfmt"
+
+            -   name: "Commit formatted yaml validation files"
+                uses: "stefanzweifel/git-auto-commit-action@v5.0.0"
+                with:
+                    branch: "${{ github.head_ref }}"
+                    commit_author: "${{ env.DATANA_BOT_NAME }} <${{ env.DATANA_BOT_EMAIL }}>"
+                    commit_message: "Reformatted YAML validation files"
+                    commit_user_email: "${{ env.DATANA_BOT_EMAIL }}"
+                    commit_user_name: "${{ env.DATANA_BOT_NAME }}"
+
+            -
+                name: "Lint YAML files"
+                uses: "ibiqlik/action-yamllint@v3.1"
+                with:
+                    config_file: ".yamllint.yaml"
+                    file_or_dir: "."
+                    strict: true

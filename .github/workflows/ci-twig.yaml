@@ -1,0 +1,81 @@
+name: "Twig"
+
+on: # yamllint disable-line rule:truthy
+    pull_request:
+        paths:
+            - "**.twig"
+            - ".github/workflows/ci-twig.yaml"
+    push:
+        branches:
+            - "develop"
+            - "master"
+        paths:
+            - "**.twig"
+            - ".github/workflows/ci-twig.yaml"
+
+env:
+    DATANA_BOT_EMAIL: "bot@datana.rocks"
+    DATANA_BOT_NAME: "datana-bot"
+    REQUIRED_PHP_EXTENSIONS: "ctype, filter, pdo_pgsql"
+
+jobs:
+    lint:
+        name: "Lint"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            # workaround for missing secret in fork PRs - see https://github.com/actions/checkout/issues/298
+            # see https://github.com/rectorphp/rector/commit/d395e1c28b8e6a56711dcc2e10490a82965850e4
+            -   if: github.actor != 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+                    # Must be used to be able to commit changed files
+                    token: "${{ secrets.DATANA_BOT_TOKEN }}"
+
+            # in forks, the token is not available - so we cannot use it
+            -   if: github.actor == 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@2.28.0"
+                with:
+                    coverage: "none"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@2.2.0"
+                with:
+                    composer-options: "--no-scripts"
+
+            -
+                name: "Lint Twig files"
+                run: "bin/console lint:twig templates/"
+
+            -
+                name: "Run vincentlanglet/twig-cs-fixer"
+                run: "vendor/bin/twig-cs-fixer lint --fix --no-cache templates/"
+
+            -
+                name: "Commit files fixed with vincentlanglet/twig-cs-fixer"
+                uses: "stefanzweifel/git-auto-commit-action@v5.0.0"
+                with:
+                    branch: "${{ github.head_ref }}"
+                    commit_author: "${{ env.DATANA_BOT_NAME }} <${{ env.DATANA_BOT_EMAIL }}>"
+                    commit_message: "Fix: Run 'twig-cs-fixer lint --fix'"
+                    commit_user_email: "${{ env.DATANA_BOT_EMAIL }}"
+                    commit_user_name: "${{ env.DATANA_BOT_NAME }}"

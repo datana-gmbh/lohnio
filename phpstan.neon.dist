@@ -1,0 +1,16 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    doctrine:
+        objectManagerLoader: build/phpstan/doctrine-object-manager-default.php
+    inferPrivatePropertyTypeFromConstructor: true
+    level: 8
+    paths:
+        - src
+        - tests
+    symfony:
+        container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
+        console_application_loader: build/phpstan/console-loader.php
+    tmpDir: .build/phpstan/default
+    checkGenericClassInNonGenericObjectType: false

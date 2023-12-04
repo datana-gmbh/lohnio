@@ -1,0 +1,4 @@
+"https://{all}/": { type: upstream, upstream: "project-name:http" }
+"https://www.{all}/": {type: redirect, to: "https://{all}/" }
+"http://{all}/": { type: redirect, to: "https://{all}/" }
+"http://www.{all}/": { type: redirect, to: "https://{all}/" }

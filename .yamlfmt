@@ -1,0 +1,10 @@
+include:
+  - config/packages/validation/**/*.{yaml,yml}
+
+line_ending: lf
+
+retain_line_breaks: true
+
+formatter:
+   type: basic
+   indent: 4

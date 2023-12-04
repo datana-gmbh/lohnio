@@ -1,0 +1,5 @@
+main:
+    # supported versions: 9.6, 10, 11, 12, 13, 14, 15
+    # 9.3 is also available but not maintained upstream
+    type: postgresql:15
+    disk: 1024

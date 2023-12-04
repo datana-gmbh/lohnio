@@ -1,0 +1,33 @@
+{
+    "symbol-whitelist": [
+        "Doctrine\\Bundle\\FixturesBundle\\Fixture",
+        "Doctrine\\Bundle\\FixturesBundle\\FixtureGroupInterface",
+        "Doctrine\\Common\\DataFixtures\\OrderedFixtureInterface",
+        "Faker\\Factory",
+        "Faker\\Generator",
+        "Faker\\Provider\\Base",
+        "Faker\\Provider\\Person",
+        "Zenstruck\\Foundry\\Instantiator",
+        "Zenstruck\\Foundry\\ModelFactory",
+        "Zenstruck\\Foundry\\Story",
+        "trigger_deprecation",
+        "array",
+        "bool",
+        "callable",
+        "dump",
+        "false",
+        "float",
+        "int",
+        "iterable",
+        "mixed",
+        "null",
+        "object",
+        "parent",
+        "self",
+        "static",
+        "string",
+        "true",
+        "void",
+        "never"
+    ]
+}

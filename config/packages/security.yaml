@@ -1,0 +1,38 @@
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\InMemoryUser: plaintext
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        api_users:
+            memory:
+                users:
+                    admin:
+                        password: 'kjsdhfdfhg38734hjasdhad374'
+                        roles: [ROLE_ADMIN]
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        api:
+            provider: api_users
+            http_basic:
+                realm: Authenticated Area
+
+        main:
+            lazy: true
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+    role_hierarchy:
+        ROLE_ADMIN: [ ROLE_USER ]
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/admin, allow_if: "is_granted('ROLE_ADMIN')" }
+        - { path: ^/api, role: ROLE_USER }
+        - { path: ^/, role: PUBLIC_ACCESS }

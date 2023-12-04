@@ -1,0 +1,116 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method App\\\\Bridge\\\\Faker\\\\Provider\\\\ArrayProvider\\:\\:array\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Bridge/Faker/Provider/ArrayProvider.php
+
+		-
+			message: "#^Method App\\\\Bridge\\\\Faker\\\\Provider\\\\ArrayProvider\\:\\:arrayOrEmptyArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Bridge/Faker/Provider/ArrayProvider.php
+
+		-
+			message: "#^Method App\\\\Bridge\\\\Faker\\\\Provider\\\\ArrayProvider\\:\\:emptyArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Bridge/Faker/Provider/ArrayProvider.php
+
+		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Acceptance/AcceptanceDummyTest.php
+
+		-
+			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
+			count: 1
+			path: tests/AutoReview/AutoReviewDummyTest.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:getContent\\(\\)\\.$#"
+			count: 1
+			path: tests/Functional/AppBrowser.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Functional\\\\AppBrowser\\:\\:visitWithQueryParameters\\(\\) has parameter \\$queryParameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Functional/AppBrowser.php
+
+		-
+			message: "#^Call to static method App\\\\Tests\\\\Functional\\\\FunctionalTestCase\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Functional/FunctionalDummyTest.php
+
+		-
+			message: "#^Call to static method App\\\\Tests\\\\Integration\\\\IntegrationTestCase\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Integration/IntegrationDummyTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Integration\\\\IntegrationTestCase\\:\\:createKernel\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Integration/IntegrationTestCase.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Integration\\\\IntegrationTestCase\\:\\:formatAndContextSpecificSerializer\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Integration/IntegrationTestCase.php
+
+		-
+			message: "#^Call to static method App\\\\Tests\\\\Unit\\\\UnitTestCase\\:\\:assertSame\\(\\) with 'admin_dashboard' and 'admin_dashboard' will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Unit/Routing/AdminRoutesTest.php
+
+		-
+			message: "#^Call to static method App\\\\Tests\\\\Unit\\\\UnitTestCase\\:\\:assertSame\\(\\) with 'index' and 'index' will always evaluate to true\\.$#"
+			count: 1
+			path: tests/Unit/Routing/RoutesTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\DataProvider\\\\GenericProvider\\:\\:allKindsOfValues\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Util/DataProvider/GenericProvider.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Serializer\\\\SerializerInterface\\:\\:normalize\\(\\)\\.$#"
+			count: 1
+			path: tests/Util/Serializer/FormatAndContextSpecificSerializer.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\Serializer\\\\FormatAndContextSpecificSerializer\\:\\:__construct\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Util/Serializer/FormatAndContextSpecificSerializer.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\Serializer\\\\FormatAndContextSpecificSerializer\\:\\:normalize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Util/Serializer/FormatAndContextSpecificSerializer.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\Serializer\\\\FormatAndContextSpecificSerializer\\:\\:normalize\\(\\) has parameter \\$object with no type specified\\.$#"
+			count: 1
+			path: tests/Util/Serializer/FormatAndContextSpecificSerializer.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\Serializer\\\\FormatAndContextSpecificSerializer\\:\\:serialize\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: tests/Util/Serializer/FormatAndContextSpecificSerializer.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\Serializer\\\\FormatAndContextSpecificSerializer\\:\\:serialize\\(\\) has parameter \\$data with no type specified\\.$#"
+			count: 1
+			path: tests/Util/Serializer/FormatAndContextSpecificSerializer.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\TestKernel\\:\\:create\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Util/TestKernel.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\TestKernel\\:\\:debug\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Util/TestKernel.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Util\\\\TestKernel\\:\\:environment\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Util/TestKernel.php

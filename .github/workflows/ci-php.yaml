@@ -1,0 +1,400 @@
+name: "PHP"
+
+on: # yamllint disable-line rule:truthy
+    pull_request:
+        paths:
+            - ".github/workflows/ci-php.yaml"
+            - "**"
+    push:
+        branches:
+            - "develop"
+            - "master"
+        paths:
+            - ".github/workflows/ci-php.yaml"
+            - "**"
+
+env:
+    DATANA_BOT_EMAIL: "bot@datana.rocks"
+    DATANA_BOT_NAME: "datana-bot"
+    REQUIRED_PHP_EXTENSIONS: "ctype, filter, pdo_pgsql"
+
+jobs:
+    coding-standards:
+        name: "Coding Standards"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+
+        steps:
+            # workaround for missing secret in fork PRs - see https://github.com/actions/checkout/issues/298
+            # see https://github.com/rectorphp/rector/commit/d395e1c28b8e6a56711dcc2e10490a82965850e4
+            -   if: github.actor != 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+                    # Must be used to be able to commit changed files
+                    token: "${{ secrets.DATANA_BOT_TOKEN }}"
+
+            # in forks, the token is not available - so we cannot use it
+            -   if: github.actor == 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@2.28.0"
+                with:
+                    coverage: "none"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Validate composer.json"
+                run: "composer validate"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@2.2.0"
+                with:
+                    composer-options: "--no-scripts"
+
+            -
+                name: "Run ergebnis/composer-normalize"
+                run: "composer normalize"
+
+            -
+                name: "Run ergebnis/composer-normalize in tools/"
+                run: "composer normalize tools/composer.json"
+
+            -
+                name: "Commit files normalized with ergebnis/composer-normalize"
+                uses: "stefanzweifel/git-auto-commit-action@v5.0.0"
+                with:
+                    branch: "${{ github.head_ref }}"
+                    commit_author: "${{ env.DATANA_BOT_NAME }} <${{ env.DATANA_BOT_EMAIL }}>"
+                    commit_message: "Fix: Run 'composer normalize'"
+                    commit_user_email: "${{ env.DATANA_BOT_EMAIL }}"
+                    commit_user_name: "${{ env.DATANA_BOT_NAME }}"
+
+            -
+                name: "Create cache directory for friendsofphp/php-cs-fixer"
+                run: "mkdir -p .build/php-cs-fixer"
+
+            -
+                name: "Cache cache directory for friendsofphp/php-cs-fixer"
+                uses: "actions/cache@v3"
+                with:
+                    path: ".build/php-cs-fixer"
+                    key: "php-${{ matrix.php-version }}-php-cs-fixer-${{ github.sha }}"
+                    restore-keys: "php-${{ matrix.php-version }}-php-cs-fixer-"
+
+            -
+                name: "Run friendsofphp/php-cs-fixer"
+                run: "vendor/bin/php-cs-fixer fix --diff --verbose"
+
+            -
+                name: "Commit files fixed with friendsofphp/php-cs-fixer"
+                uses: "stefanzweifel/git-auto-commit-action@v5.0.0"
+                with:
+                    branch: "${{ github.head_ref }}"
+                    commit_author: "${{ env.DATANA_BOT_NAME }} <${{ env.DATANA_BOT_EMAIL }}>"
+                    commit_message: "Fix: Run 'php-cs-fixer fix'"
+                    commit_user_email: "${{ env.DATANA_BOT_EMAIL }}"
+                    commit_user_name: "${{ env.DATANA_BOT_NAME }}"
+
+    refactoring:
+        name: "Refactoring"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            # workaround for missing secret in fork PRs - see https://github.com/actions/checkout/issues/298
+            # see https://github.com/rectorphp/rector/commit/d395e1c28b8e6a56711dcc2e10490a82965850e4
+            -   if: github.actor != 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+                    # Must be used to be able to commit changed files
+                    token: "${{ secrets.DATANA_BOT_TOKEN }}"
+
+            # in forks, the token is not available - so we cannot use it
+            -   if: github.actor == 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@2.28.0"
+                with:
+                    coverage: "none"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@2.2.0"
+                with:
+                    composer-options: "--no-scripts"
+
+            -
+                name: "Run rector/rector"
+                run: "vendor/bin/rector process --config rector.php"
+
+            -
+                name: "Commit files refactored with rector/rector"
+                uses: "stefanzweifel/git-auto-commit-action@v5.0.0"
+                with:
+                    branch: "${{ github.head_ref }}"
+                    commit_author: "${{ env.DATANA_BOT_NAME }} <${{ env.DATANA_BOT_EMAIL }}>"
+                    commit_message: "Fix: Run 'rector process'"
+                    commit_user_email: "${{ env.DATANA_BOT_EMAIL }}"
+                    commit_user_name: "${{ env.DATANA_BOT_NAME }}"
+
+    static-code-analysis:
+        name: "Static Code Analysis"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            -
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@2.28.0"
+                with:
+                    coverage: "none"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Prepare environment"
+                run: "cp .env.test .env.local"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@2.2.0"
+
+            -
+                name: "Warm up application cache"
+                run: "bin/console cache:warmup --env=dev"
+
+            -
+                name: "Cache cache directory for phpstan/phpstan"
+                uses: "actions/cache@v3"
+                with:
+                    path: ".build/phpstan"
+                    key: "php-${{ matrix.php-version }}-phpstan-${{ github.sha }}"
+                    restore-keys: "php-${{ matrix.php-version }}-phpstan-"
+
+            -
+                name: "Run a static code analysis with phpstan/phpstan and default configuration"
+                run: "vendor/bin/phpstan analyse --no-progress"
+
+    dependency-analysis:
+        name: "Dependency Analysis"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            -
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@2.28.0"
+                with:
+                    coverage: "none"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@2.2.0"
+
+            -
+                name: "Check for unused dependencies"
+                run: 'vendor/bin/composer-unused --no-progress --output-format=github | grep -e "^::error" && exit 1 || :'
+
+            -
+                name: "Check for implicit dependencies"
+                run: "tools/composer-require-checker check --config-file=$(pwd)/composer-require-checker.json composer.json"
+
+    doctrine:
+        name: "Doctrine"
+
+        runs-on: "ubuntu-latest"
+
+        services:
+            database-default:
+                image: "postgres:15"
+                env:
+                    POSTGRES_USER: "postgres"
+                    POSTGRES_PASSWORD: "postgres"
+                    POSTGRES_DB: "default"
+                ports:
+                    - "5432:5432"
+                options: "--health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3"
+
+        env:
+            APP_ENV: "test"
+            ENTITY_MANAGER_NAME_DEFAULT: "default"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            -
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@2.28.0"
+                with:
+                    coverage: "none"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@2.2.0"
+
+            -
+                name: "Show Doctrine migration status"
+                run: "bin/console doctrine:migrations:status"
+
+            -
+                name: "Execute Doctrine migrations"
+                run: "bin/console doctrine:migrations:migrate --no-interaction"
+
+# MUST BE ENABLED AGAIN IF WE HAVE A FIRST ENTITY!
+#            -
+#                name: "Show Doctrine mapping information"
+#                run: "bin/console doctrine:mapping:info --em=${{ env.ENTITY_MANAGER_NAME_DEFAULT }}"
+#
+#            -
+#                name: "Validate Doctrine mapping"
+#                run: "bin/console doctrine:schema:validate --em=${{ env.ENTITY_MANAGER_NAME_DEFAULT }}"
+
+    tests:
+        name: "Tests"
+
+        runs-on: "ubuntu-latest"
+
+        services:
+            database-default:
+                image: "postgres:13"
+                env:
+                    POSTGRES_USER: "postgres"
+                    POSTGRES_PASSWORD: "postgres"
+                    POSTGRES_DB: "default"
+                ports:
+                    - "5432:5432"
+                options: "--health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3"
+
+        env:
+            APP_ENV: "test"
+            ENTITY_MANAGER_NAME_DEFAULT: "default"
+            COLUMNS: "120"
+
+        strategy:
+            matrix:
+                php-version:
+                    - "8.3"
+
+        steps:
+            # workaround for missing secret in fork PRs - see https://github.com/actions/checkout/issues/298
+            # see https://github.com/rectorphp/rector/commit/d395e1c28b8e6a56711dcc2e10490a82965850e4
+            -   if: github.actor != 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+                    # Must be used to be able to commit changed files
+                    token: "${{ secrets.DATANA_BOT_TOKEN }}"
+
+            # in forks, the token is not available - so we cannot use it
+            -   if: github.actor == 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+                with:
+                    ref: "${{ github.head_ref }}"
+
+            -
+                name: "Install PHP with extensions"
+                uses: "shivammathur/setup-php@2.28.0"
+                with:
+                    coverage: "pcov"
+                    extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
+                    php-version: "${{ matrix.php-version }}"
+                    tools: "composer:v2"
+
+            -
+                name: "Install dependencies with composer"
+                uses: "ramsey/composer-install@2.2.0"
+                with:
+                    composer-options: "--no-scripts"
+
+            -
+                name: "Show Doctrine migration status"
+                run: "bin/console doctrine:migrations:status"
+
+            -
+                name: "Execute Doctrine migrations"
+                run: "bin/console doctrine:migrations:migrate --no-interaction"
+
+            -
+                name: "Run auto-review tests with phpunit/phpunit"
+                run: "vendor/bin/phpunit --testsuite=auto-review"
+
+            -
+                name: "Run unit tests with phpunit/phpunit"
+                run: "vendor/bin/phpunit --testsuite=unit"
+
+            -
+                name: "Run integration tests with phpunit/phpunit"
+                run: "vendor/bin/phpunit --testsuite=integration"
+
+            -
+                name: "Run functional tests with phpunit/phpunit"
+                run: "vendor/bin/phpunit --testsuite=functional"
+
+            -
+                name: "Run acceptance tests with phpunit/phpunit"
+                run: "vendor/bin/phpunit --testsuite=acceptance"

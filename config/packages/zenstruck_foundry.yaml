@@ -1,0 +1,28 @@
+# See full configuration: https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#full-default-bundle-configuration
+
+when@dev:
+    zenstruck_foundry:
+        # Whether to auto-refresh proxies by default (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#auto-refresh)
+        auto_refresh_proxies: true
+
+        faker:
+            service: 'App\Bridge\Faker\ExtendedGenerator'
+
+        database_resetter:
+            orm:
+                reset_mode: migrate
+
+when@test:
+    zenstruck_foundry:
+        # Whether to auto-refresh proxies by default (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#auto-refresh)
+        auto_refresh_proxies: true
+
+        faker:
+            service: 'App\Bridge\Faker\ExtendedGenerator'
+
+        database_resetter:
+            orm:
+                reset_mode: migrate
+
+        global_state:
+            - 'App\Fixtures\Story\GlobalStory'
