@@ -1,4 +1,4 @@
-# project-name - Ein Projekt von Datana GmbH
+# LOHNIO - Ein Projekt von Datana GmbH
 
 ## Platform.sh Project ID
 `?????`
