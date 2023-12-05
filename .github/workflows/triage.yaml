@@ -22,7 +22,7 @@ jobs:
         steps:
             -
                 name: "Add labels based on modified files"
-                uses: "actions/labeler@v5"
+                uses: "actions/labeler@v4"
                 with:
                     repo-token: "${{ secrets.DATANA_BOT_TOKEN }}"
 
