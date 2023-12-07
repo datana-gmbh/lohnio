@@ -82,7 +82,7 @@
         "symfony/phpunit-bridge": "^6.4.1",
         "symfony/web-profiler-bundle": "^6.4.0",
         "thecodingmachine/phpstan-safe-rule": "^1.2",
-        "vincentlanglet/twig-cs-fixer": "^1.6.0",
+        "vincentlanglet/twig-cs-fixer": "^2.0",
         "zenstruck/browser": "^1.6",
         "zenstruck/console-test": "^1.5",
         "zenstruck/foundry": "^1.36.0"
