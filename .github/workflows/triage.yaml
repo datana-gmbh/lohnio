@@ -21,6 +21,10 @@ jobs:
 
         steps:
             -
+                name: "Checkout"
+                uses: "actions/checkout@v4"
+
+            -
                 name: "Add labels based on modified files"
                 uses: "actions/labeler@v5"
                 with:

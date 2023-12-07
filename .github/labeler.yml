@@ -1,18 +1,21 @@
-"dependency":
-    - .github/dependabot.yml
-    - composer.json
-    - composer.lock
-    - symfony.lock
-    - tools/composer.json
-    - tools/composer.lock
-
-"Github Actions":
-    - .github/workflows/*
-    - .github/workflows/**/*
-
-"PlatformSH":
-    - .php-version
-    - .platform.app.yaml
-    - .platform/routes.yaml
-    - .platform/services.yaml
-    - php.ini
+dependency:
+    - changed-files:
+        - any-glob-to-any-file:
+            - .github/dependabot.yml
+            - composer.json
+            - composer.lock
+            - symfony.lock
+            - tools/composer.json
+            - tools/composer.lock
+'Github Actions':
+    - changed-files:
+        - any-glob-to-any-file:
+            - '.github/workflows/**'
+PlatformSH:
+    - changed-files:
+        - any-glob-to-any-file:
+            - .php-version
+            - .platform.app.yaml
+            - .platform/routes.yaml
+            - .platform/services.yaml
+            - php.ini
