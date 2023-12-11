@@ -10,7 +10,7 @@
         "ext-pdo_pgsql": "*",
         "api-platform/core": "^3.2.7",
         "datana-gmbh/doctrine-postgres-public-schema-listener": "^1.2.0",
-        "datana-gmbh/logz-io-handler": "^1.6.2",
+        "datana-gmbh/logz-io-handler": "^1.7",
         "doctrine/collections": "^1.8",
         "doctrine/dbal": "^3.7.2",
         "doctrine/doctrine-bundle": "^2.11.1",
