@@ -221,20 +221,20 @@
         },
         {
             "name": "datana-gmbh/logz-io-handler",
-            "version": "1.6.2",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/datana-gmbh/logz-io-handler.git",
-                "reference": "7b9c398aebb762a26fe4c871558ff90efcd5f0bc"
+                "reference": "dacbe9c661a1214dda1a4e0d8d0b46262a1cfd70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/datana-gmbh/logz-io-handler/zipball/7b9c398aebb762a26fe4c871558ff90efcd5f0bc",
-                "reference": "7b9c398aebb762a26fe4c871558ff90efcd5f0bc",
+                "url": "https://api.github.com/repos/datana-gmbh/logz-io-handler/zipball/dacbe9c661a1214dda1a4e0d8d0b46262a1cfd70",
+                "reference": "dacbe9c661a1214dda1a4e0d8d0b46262a1cfd70",
                 "shasum": ""
             },
             "require": {
-                "inpsyde/logzio-monolog": "^1.1 || ^2.0 ",
+                "inpsyde/logzio-monolog": "^2.0",
                 "monolog/monolog": "^2.0 || ^3.0",
                 "oskarstark/trimmed-non-empty-string": "^1.0",
                 "php": ">=8.1",
@@ -264,9 +264,9 @@
             "description": "A pre configured handler for logz.io",
             "support": {
                 "issues": "https://github.com/datana-gmbh/logz-io-handler/issues",
-                "source": "https://github.com/datana-gmbh/logz-io-handler/tree/1.6.2"
+                "source": "https://github.com/datana-gmbh/logz-io-handler/tree/1.7.0"
             },
-            "time": "2023-12-02T21:33:06+00:00"
+            "time": "2023-12-11T08:53:28+00:00"
         },
         {
             "name": "doctrine/cache",
