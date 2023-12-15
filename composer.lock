@@ -6944,26 +6944,28 @@
     "packages-dev": [
         {
             "name": "behat/mink",
-            "version": "v1.10.0",
+            "version": "v1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/minkphp/Mink.git",
-                "reference": "19e58905632e7cfdc5b2bafb9b950a3521af32c5"
+                "reference": "d8527fdf8785aad38455fb426af457ab9937aece"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/minkphp/Mink/zipball/19e58905632e7cfdc5b2bafb9b950a3521af32c5",
-                "reference": "19e58905632e7cfdc5b2bafb9b950a3521af32c5",
+                "url": "https://api.github.com/repos/minkphp/Mink/zipball/d8527fdf8785aad38455fb426af457ab9937aece",
+                "reference": "d8527fdf8785aad38455fb426af457ab9937aece",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2",
-                "symfony/css-selector": "^4.4 || ^5.0 || ^6.0"
+                "symfony/css-selector": "^4.4 || ^5.0 || ^6.0 || ^7.0"
             },
             "require-dev": {
+                "phpstan/phpstan": "^1.10",
+                "phpstan/phpstan-phpunit": "^1.3",
                 "phpunit/phpunit": "^8.5.22 || ^9.5.11",
-                "symfony/error-handler": "^4.4 || ^5.0 || ^6.0",
-                "symfony/phpunit-bridge": "^5.4 || ^6.0"
+                "symfony/error-handler": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+                "symfony/phpunit-bridge": "^5.4 || ^6.0 || ^7.0"
             },
             "suggest": {
                 "behat/mink-browserkit-driver": "fast headless driver for any app without JS emulation",
@@ -7002,9 +7004,9 @@
             ],
             "support": {
                 "issues": "https://github.com/minkphp/Mink/issues",
-                "source": "https://github.com/minkphp/Mink/tree/v1.10.0"
+                "source": "https://github.com/minkphp/Mink/tree/v1.11.0"
             },
-            "time": "2022-03-28T14:22:43+00:00"
+            "time": "2023-12-09T11:23:23+00:00"
         },
         {
             "name": "colinodell/json5",
@@ -11927,26 +11929,26 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v6.4.0",
+            "version": "v7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "14ff4fd2a5c8969d6158dbe7ef5b17d6a9c6ba33"
+                "reference": "d13205f444a535f4a6e52186aedbc99664f66a86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/14ff4fd2a5c8969d6158dbe7ef5b17d6a9c6ba33",
-                "reference": "14ff4fd2a5c8969d6158dbe7ef5b17d6a9c6ba33",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/d13205f444a535f4a6e52186aedbc99664f66a86",
+                "reference": "d13205f444a535f4a6e52186aedbc99664f66a86",
                 "shasum": ""
             },
             "require": {
                 "masterminds/html5": "^2.6",
-                "php": ">=8.1",
+                "php": ">=8.2",
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
-                "symfony/css-selector": "^5.4|^6.0|^7.0"
+                "symfony/css-selector": "^6.4|^7.0"
             },
             "type": "library",
             "autoload": {
@@ -11974,7 +11976,7 @@
             "description": "Eases DOM navigation for HTML and XML documents",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dom-crawler/tree/v6.4.0"
+                "source": "https://github.com/symfony/dom-crawler/tree/v7.0.0"
             },
             "funding": [
                 {
@@ -11990,7 +11992,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-20T16:41:16+00:00"
+            "time": "2023-11-20T16:43:42+00:00"
         },
         {
             "name": "symfony/maker-bundle",
@@ -12604,16 +12606,16 @@
         },
         {
             "name": "zenstruck/browser",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/browser.git",
-                "reference": "9e931f5d5a62007f6642bec47992f54574ebc5f1"
+                "reference": "cf514edcf66cd889baeb29870c29a0494d32aff4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/browser/zipball/9e931f5d5a62007f6642bec47992f54574ebc5f1",
-                "reference": "9e931f5d5a62007f6642bec47992f54574ebc5f1",
+                "url": "https://api.github.com/repos/zenstruck/browser/zipball/cf514edcf66cd889baeb29870c29a0494d32aff4",
+                "reference": "cf514edcf66cd889baeb29870c29a0494d32aff4",
                 "shasum": ""
             },
             "require": {
@@ -12631,7 +12633,7 @@
                 "justinrainbow/json-schema": "^5.2",
                 "mtdowling/jmespath.php": "^2.6",
                 "phpstan/phpstan": "^1.4",
-                "phpunit/phpunit": "^9.5",
+                "phpunit/phpunit": "^9.5|^10.4",
                 "symfony/mime": "^5.4|^6.0|^7.0",
                 "symfony/panther": "^1.1|^2.0.1",
                 "symfony/phpunit-bridge": "^6.0|^7.0",
@@ -12666,7 +12668,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/browser/issues",
-                "source": "https://github.com/zenstruck/browser/tree/v1.6.0"
+                "source": "https://github.com/zenstruck/browser/tree/v1.7.0"
             },
             "funding": [
                 {
@@ -12674,7 +12676,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-31T17:14:32+00:00"
+            "time": "2023-12-14T21:04:01+00:00"
         },
         {
             "name": "zenstruck/callback",
