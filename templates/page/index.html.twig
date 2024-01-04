@@ -1,89 +1,154 @@
 {% extends 'layout.html.twig' %}
 
-{% block body %}
-    {% block navigation %}
-        {% set links = [
-            {
-                label: 'Home',
-                path: path(constant('App\\Routing\\Routes::INDEX'), { _fragment: 'top' }),
-            },
-            {
-                label: 'Lorem ipsum',
-                path: path(constant('App\\Routing\\Routes::INDEX'), { _fragment: 'lorem' }),
-            },
-            {
-                label: 'Dolor',
-                path: path(constant('App\\Routing\\Routes::INDEX'), { _fragment: 'dolor' }),
-            },
-            {
-                label: 'sit est den',
-                path: path(constant('App\\Routing\\Routes::INDEX'), { _fragment: 'sit-est' }),
-            }
-        ] %}
-        <nav class="bg-white fixed inset-x-0">
-            <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                <div class="relative flex h-20 justify-between">
-                    <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                        <!-- Mobile menu button -->
-                        <button
-                            type="button"
-                            class="toggle-button relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary-600"
-                            data-target-id="mobile-menu"
-                        >
-                            <span class="absolute -inset-0.5"></span>
-                            <span class="sr-only">Navigation öffnen</span>
-                            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <div class="flex flex-shrink-0 items-center">
-                            <img class="h-6 w-auto" src="{{ asset('images/logo.png') }}" alt="Lohnio Logo">
-                        </div>
-                        <div class="hidden sm:ml-10 sm:flex sm:space-x-8">
-                            {% for link in links %}
-                                <a
-                                    href="{{ link.path }}"
-                                    class="scroll-to {% if link.path == app.request.attributes.string('_route') %}border-secondary-600 text-gray-900{% else %} border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2"
-                                >
-                                    {{ link.label }}
-                                </a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <button type="button" class="relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-3 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300">
-                                Lorem ipsum
-                            </button>
-                        </div>
-                    </div>
+{% block content %}
+    <div class="pt-14 bg-primary-600">
+        <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-20">
+            <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
+                <h1 class="mt-10 max-w-lg text-white">
+                    Das Portal für Ihre Mitarbeiter:innen
+                </h1>
+                <p class="mt-6 text-white">
+                    Esse id magna consectetur fugiat non dolor in ad laboris
+                    magna laborum ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id.
+                </p>
+                <ul class="mt-6 grid grid-cols-2 gap-4 text-white">
+                    <li class="inline-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1 text-secondary-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                        Lorem ipsum dolor amet
+                    </li>
+                    <li class="inline-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1 text-secondary-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                        consetetur sadipscing elitr, sed
+                    </li>
+                    <li class="inline-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1 text-secondary-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                        e et dolore magna aliquyam
+                    </li>
+                </ul>
+                <div class="mt-10 flex items-center gap-x-6">
+                    <a
+                        href="#"
+                        class="relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                    >
+                        Kontakt
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
+                    </a>
                 </div>
             </div>
+            <div class="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
+                <img src="{{ asset('images/hero.png') }}" alt="Zufriedene Mitarbeiter:innen" class="mx-auto">
+            </div>
+        </div>
+    </div>
 
-            <!-- Mobile menu, show/hide based on menu state. -->
-            <div class="hidden" id="mobile-menu">
-                <div class="space-y-1 pb-4 pt-2">
-                    {% for link in links %}
-                        <a
-                            href="{{ link.path }}"
-                            class="scroll-to {% if link.path == app.request.attributes.string('_route') %}text-gray-900 border-secondary-600{% else %}text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700{% endif %} block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium"
-                        >
-                            {{ link.label }}
-                        </a>
+    {% set logos = [
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/8ee9f161-df19-4fa7-a2a6-edf9acf0e0d6?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 1',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/80480f8a-69ad-4c30-88ba-f4e7ee08fc51?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 2',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/140d376c-13f2-4823-b397-b3de733bf560?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 3',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/0ae217f1-b695-4661-bd3d-6440eebc2c5c?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 4',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/67017079-51e1-4245-9bf1-b5957eb66c74?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 5',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/515313ac-7ec9-4c6e-95db-80dac2f8b960?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 6',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c513fc32-3ab9-4cca-911e-0b2642ac7206?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 7',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/5731a5a7-689f-49ae-abf1-6e6dc00c2043?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 8',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/cb51d286-530f-42be-9e91-9c850522f127?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 9',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/44ba8437-f6fd-4a51-bfd3-262d7528f7a4?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 10',
+        },
+    ] %}
+
+    <div class="bg-primary-50 py-4 px-6">
+        <div class="flex overflow-hidden max-w-5xl mx-auto items-center">
+            <h5 class="text-primary-900 pr-12">Kunden</h5>
+            <div class="flex overflow-hidden space-x-16 max-w-7xl mx-auto group">
+                <div class="flex space-x-16 animate-loop-scroll group-hover:paused">
+                    {% for logo in logos %}
+                        <div class="relative">
+                            <img src="{{ logo.image }}" class="max-w-none max-h-12 grayscale brightness-100 contrast-100" alt="{{ logo.alt }}">
+                            {# <div class="absolute top-0 left-0 h-full w-full bg-primary-600 opacity-50 mix-blend-overlay"></div>#}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="flex space-x-16 animate-loop-scroll group-hover:paused" aria-hidden="true">
+                    {% for logo in logos %}
+                        <div class="relative">
+                            <img src="{{ logo.image }}" class="max-w-none max-h-12 grayscale brightness-100 contrast-100" alt="{{ logo.alt }}">
+                            {# <div class="absolute top-0 left-0 h-full w-full bg-primary-600 opacity-50 mix-blend-overlay"></div>#}
+                        </div>
                     {% endfor %}
                 </div>
             </div>
-        </nav>
-    {% endblock %}
+        </div>
+    </div>
 
-    <button
-        class="scroll-up hidden fixed bottom-5 right-5 rounded-full py-2 px-4 inline-flex bg-black text-white font-bold tracking-wide text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-        </svg>
+    {% set features = [
+        {
+            icon: asset('images/features/business-card.png'),
+            title: 'Lorem ipsum dolor sit amet',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+        },
+    ] %}
 
-        Nach oben
-    </button>
+    <div class="bg-white py-16">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 class="text-gray-900 text-center">Lorem Ipsum</h2>
+            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+                    {% for feature in features %}
+                        <div class="flex flex-col">
+                            <dt>
+                                <div class="mb-6 flex h-32 w-32 items-center justify-center rounded-xl bg-primary-50">
+                                    <svg class="h-18 w-18 text-primary-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z" />
+                                    </svg>
+                                </div>
+                                <h6 class="text-center">{{ feature.title }}</h6>
+                            </dt>
+                            <dd class="mt-1 flex flex-auto flex-col text-center text-gray-600">
+                                <p class="flex-auto">
+                                    {{ feature.description }}
+                                </p>
+                            </dd>
+                        </div>
+                    {% endfor %}
+                </dl>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

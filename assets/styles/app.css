@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .paused {
+        animation-play-state: paused;
+    }
+}
+
 @font-face {
     font-family: 'Poppins';
     src: url('../fonts/Poppins/Poppins-Regular.ttf') format('truetype');
@@ -100,10 +106,35 @@
     font-style: normal;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    @apply font-poppins
+h1 {
+    @apply font-poppins leading-[3rem] font-semibold text-[2.3rem] sm:text-[2.5rem];
 }
 
-body {
-    @apply font-montserrat text-gray-900;
+h2 {
+    @apply font-poppins leading-[3rem] font-semibold text-[2.1rem] sm:text-[2.3rem];
 }
+
+h3 {
+    @apply font-poppins leading-[3rem] font-semibold text-[1.9rem] sm:text-[2.1rem];
+}
+
+h4 {
+    @apply font-poppins leading-[3rem] font-semibold text-[1.7rem] sm:text-[1.9rem];
+}
+
+h5 {
+    @apply font-poppins leading-[3rem] font-semibold text-[1.5rem] sm:text-[1.7rem];
+}
+
+h6 {
+    @apply font-poppins leading-[3rem] font-semibold text-[1.3rem] sm:text-[1.5rem];
+}
+
+/*a {*/
+/*    @apply font-semibold hover:underline transition duration-300;*/
+/*}*/
+
+p {
+    @apply font-montserrat leading-[1.6rem] text-base font-normal;
+}
+
