@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="pt-14 bg-primary-600">
+    <div class="pt-14 bg-primary-600 relative">
         <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-20">
-            <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
+            <div class="mx-auto max-w-xl lg:mx-0 lg:flex-auto">
                 <h1 class="mt-10 max-w-lg text-white">
                     Das Portal für Ihre Mitarbeiter:innen
                 </h1>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
-                <img src="{{ asset('build/hero.png') }}" alt="Zufriedene Mitarbeiter:innen" class="mx-auto">
+                <img src="{{ asset('build/hero.png') }}" alt="Zufriedene Mitarbeiter:innen" class="w-[44rem]">
             </div>
         </div>
     </div>
@@ -93,14 +93,14 @@
     ] %}
 
     <div class="bg-primary-50 py-4 px-6">
-        <div class="flex overflow-hidden max-w-5xl mx-auto items-center">
+        <div class="flex overflow-hidden max-w-4xl mx-auto items-center">
             <h5 class="text-primary-900 pr-12">Kunden</h5>
             <div class="flex overflow-hidden space-x-16 max-w-7xl mx-auto group">
                 <div class="flex space-x-16 animate-loop-scroll group-hover:paused">
                     {% for logo in logos %}
                         <div class="relative">
                             <img src="{{ logo.image }}" class="max-w-none max-h-12 grayscale brightness-100 contrast-100" alt="{{ logo.alt }}">
-                            {# <div class="absolute top-0 left-0 h-full w-full bg-primary-600 opacity-50 mix-blend-overlay"></div> #}
+{#                             <div class="absolute top-0 left-0 h-full w-full bg-primary-600 opacity-50 mix-blend-overlay"></div> #}
                         </div>
                     {% endfor %}
                 </div>
@@ -120,24 +120,49 @@
         {
             icon: '',
             title: 'Lorem ipsum dolor sit amet',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+        },
+        {
+            icon: '',
+            title: 'Lorem ipsum dolor sit amet',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+        },
+        {
+            icon: '',
+            title: 'Lorem ipsum dolor sit amet',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing  aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+        },
+        {
+            icon: '',
+            title: 'Lorem ipsum dolor sit amet',
+            description: 'Idunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+        },
+        {
+            icon: '',
+            title: 'Lorem ipsum dolor sit amet',
+            description: 'laboris nisi ut aliquip ex ea commodo consequat sectetm, quis nostrud exercitat',
+        },
+        {
+            icon: '',
+            title: 'Lorem ipsum dolor sit amet',
+            description: 'Lorem ipsum dolor sit amet, consectetm, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
         },
     ] %}
 
     <div class="bg-white py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <h2 class="text-gray-900 text-center">Lorem Ipsum</h2>
-            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+            <div class="mx-auto mt-8 max-w-xl sm:mt-20 lg:mt-24 lg:max-w-none">
+                <dl class="grid max-w-xl grid-cols-1 gap-x-10 gap-y-16 lg:max-w-none lg:grid-cols-3">
                     {% for feature in features %}
                         <div class="flex flex-col">
                             <dt>
-                                <div class="mb-6 flex h-32 w-32 items-center justify-center rounded-xl bg-primary-50">
-                                    <svg class="h-18 w-18 text-primary-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-primary-50">
+                                    <svg class="h-12 w-12 text-primary-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z" />
                                     </svg>
                                 </div>
-                                <h6 class="text-center">{{ feature.title }}</h6>
+                                <h5 class="text-center">{{ feature.title }}</h5>
                             </dt>
                             <dd class="mt-1 flex flex-auto flex-col text-center text-gray-600">
                                 <p class="flex-auto">
@@ -147,6 +172,79 @@
                         </div>
                     {% endfor %}
                 </dl>
+            </div>
+
+            <div class="mt-24 flex mx-auto">
+                <a
+                    href="#"
+                    class="mx-auto relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                >
+                    Kontaktieren Sie uns
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="overflow-hidden bg-primary-50 py-24">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                <div class="lg:ml-auto lg:pl-4 lg:pt-4">
+                    <div class="lg:max-w-lg">
+                        <h2 class="mt-2 text-gray-900">Lorem ipsum, dolor</h2>
+                        <p class="mt-6 text-gray-600">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                        </p>
+                    </div>
+                    <div class="mt-10">
+                        <a
+                            href="#"
+                            class="mx-auto relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                        >
+                            Lassen Sie uns starten
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-start justify-end lg:order-first">
+                    <img src="{{ asset('build/story.png') }}" alt="Unsere Geschichte" class="w-full">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white">
+        <div class="mx-auto max-w-7xl py-20 px-6">
+            <div class="relative isolate overflow-hidden bg-primary-600 px-6 pt-8 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+                <div class="hidden lg:block">
+                    <img class="absolute -top-5 lg:top-1/2 left-0 max-w-none w-[5rem] md:w-[10rem] lg:w-[10rem]" src="{{ asset('build/cta-pattern.png') }}" alt="Kreis aus Streifen">
+                </div>
+                <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:text-left py-12">
+                    <h2 class="text-white">
+                        Buchen Sie jetzt Ihre persönliche Demo
+                    </h2>
+                    <div class="mt-10">
+                        <a
+                            href="#"
+                            class="mx-auto relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                        >
+                            Kostenlos buchen
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative h-80">
+                    <img class="absolute -inset-y-20 max-w-none w-[36rem]" src="{{ asset('build/cta-laptop.png') }}" alt="Kostenlose Demo">
+                </div>
             </div>
         </div>
     </div>

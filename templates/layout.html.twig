@@ -23,7 +23,7 @@
         <nav class="bg-white fixed z-10 inset-x-0">
             <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-20 justify-between">
-                    <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <div class="absolute inset-y-0 left-0 flex items-center lg:hidden">
                         <!-- Mobile menu button -->
                         <button
                             type="button"
@@ -37,11 +37,11 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
                         <div class="flex flex-shrink-0 items-center">
                             <img class="h-6 w-auto" src="{{ asset('build/logo.png') }}" alt="Lohnio Logo">
                         </div>
-                        <div class="hidden sm:ml-10 sm:flex sm:space-x-8">
+                        <div class="hidden sm:ml-10 lg:flex sm:space-x-8">
                             {% for link in links %}
                                 <a
                                     href="{{ link.path }}"
@@ -81,11 +81,9 @@
     {% block content %}{% endblock %}
 
     <button
-        class="scroll-up hidden fixed bottom-5 right-5 rounded-full py-2 px-4 inline-flex bg-black text-white font-bold tracking-wide text-sm">
+        class="scroll-up hidden fixed bottom-5 right-5 rounded py-0.5 px-1.5 items-center hover:bg-secondary-600 bg-secondary-500 text-white transition duration-300">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
         </svg>
-
-        Nach oben
     </button>
 {% endblock %}
