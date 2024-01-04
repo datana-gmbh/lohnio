@@ -51,6 +51,7 @@ $ruleSet = Php83::create()->withRules(Rules::fromArray([
     'php_unit_test_class_requires_covers' => false,
     'return_to_yield_from' => false,
     'PhpCsFixerCustomFixers/phpdoc_array_style' => false,
+    'PhpCsFixerCustomFixers/phpdoc_type_list' => false,
     'attribute_empty_parentheses' => false,
     'final_public_method_for_abstract_class' => false,
     'class_attributes_separation' => [
