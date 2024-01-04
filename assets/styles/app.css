@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .paused {
+        animation-play-state: paused;
+    }
+}
+
 @font-face {
     font-family: 'Poppins';
     src: url('../fonts/Poppins/Poppins-Regular.ttf') format('truetype');
@@ -51,6 +57,84 @@
     font-style: normal;
 }
 
-body {
-    @apply font-poppins text-gray-900;
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/Montserrat-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+h1 {
+    @apply font-poppins leading-[3rem] font-semibold text-[2.3rem] sm:text-[2.5rem];
+}
+
+h2 {
+    @apply font-poppins leading-[3rem] font-semibold text-[2.1rem] sm:text-[2.3rem];
+}
+
+h3 {
+    @apply font-poppins leading-[3rem] font-semibold text-[1.9rem] sm:text-[2.1rem];
+}
+
+h4 {
+    @apply font-poppins leading-[3rem] font-semibold text-[1.7rem] sm:text-[1.9rem];
+}
+
+h5 {
+    @apply font-poppins leading-[3rem] font-semibold text-[1.5rem] sm:text-[1.7rem];
+}
+
+h6 {
+    @apply font-poppins leading-[3rem] font-semibold text-[1.3rem] sm:text-[1.5rem];
+}
+
+/*a {*/
+/*    @apply font-semibold hover:underline transition duration-300;*/
+/*}*/
+
+p {
+    @apply font-montserrat leading-[1.6rem] text-base font-normal;
+}
+
