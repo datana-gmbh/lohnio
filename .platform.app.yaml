@@ -45,9 +45,6 @@ hooks:
         curl -fs https://get.symfony.com/cloud/configurator | bash
         NODE_VERSION=18.12 symfony-build
 
-#         bin/console tailwind:build --minify
-#         bin/console asset-map:compile
-
     deploy: |
         set -x -e
 

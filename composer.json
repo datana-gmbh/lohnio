@@ -49,8 +49,8 @@
         "symfony/uid": "^6.4.0",
         "symfony/validator": "^6.4.0",
         "symfony/var-dumper": "^6.4.0",
+        "symfony/webpack-encore-bundle": "^2.1",
         "symfony/yaml": "^6.4.0",
-        "symfonycasts/tailwind-bundle": "^0.5.0",
         "thecodingmachine/safe": "^2.5",
         "twig/twig": "^3.8.0",
         "webmozart/assert": "^1.11"
@@ -148,8 +148,7 @@
         ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "importmap:install": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         }
     }
 }
