@@ -59,7 +59,7 @@ trait Helper
     }
 
     /**
-     * @param array<string, array<mixed>|float|int|string> $expectedQueryParameters
+     * @param array<string, float|int|list<mixed>|string> $expectedQueryParameters
      */
     final protected static function assertStringEqualsQueryBuiltFromParameters(array $expectedQueryParameters, string $query): void
     {
