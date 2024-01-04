@@ -135,8 +135,14 @@ public/build/manifest.json: webpack.config.js node_modules
 	$(YARN) run encore production
 
 .PHONY: dev
-dev: doctrine
+dev: doctrine frontend
 
 .PHONY: infection
 infection: vendor doctrine code-coverage
 	symfony php vendor/bin/infection --skip-initial-tests --show-mutations --only-covering-test-cases --coverage=.build/phpunit/
+
+.PHONY: frontend
+frontend: vendor
+	symfony console importmap:install
+	symfony console tailwind:build
+	symfony console asset-map:compile
