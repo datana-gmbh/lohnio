@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class IndexController
 {
     public function __construct(
-        private Responder $responder,
+        private readonly Responder $responder,
     ) {
     }
 
