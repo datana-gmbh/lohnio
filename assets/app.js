@@ -5,3 +5,8 @@
  * which should already be in your base.html.twig.
  */
 import './styles/app.css'
+
+import './js/navbar/toggle-elements.js'
+
+import './js/scroll/scroll-up-button.js'
+import './js/scroll/scroll-event-binder.js'
