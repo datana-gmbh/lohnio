@@ -247,4 +247,72 @@
             </div>
         </div>
     </div>
+
+    {% set faqs = [
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+    ] %}
+
+    <div class="bg-white">
+        <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+            <div class="mx-auto max-w-4xl divide-y divide-gray-900/10">
+                <h2 class="text-gray-900 text-center">
+                    Häufig gestellte Fragen
+                </h2>
+                <dl class="mt-16 space-y-6 divide-y divide-gray-900/10">
+                    {% for faq in faqs %}
+                        <div class="pt-6">
+                            <dt>
+                                <button
+                                    type="button"
+                                    class="accordion-toggle-button flex w-full items-start justify-between text-left text-gray-900"
+                                    data-target-id="faq-{{ loop.index }}"
+                                >
+                                    <h6>{{ faq.question|raw }}</h6>
+                                    <span class="icon ml-6 flex h-7 items-center">
+                                       <svg class="h-6 w-6 text-secondary-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                       </svg>
+{#                                        <svg class="h-6 w-6 text-secondary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">#}
+{#                                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />#}
+{#                                        </svg>#}
+
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd class="mt-2 pr-12 hidden" id="faq-{{ loop.index }}">
+                                <p class="text-gray-600">{{ faq.answer|raw }}</p>
+                            </dd>
+                        </div>
+                    {% endfor %}
+                </dl>
+            </div>
+        </div>
+    </div>
 {% endblock %}
