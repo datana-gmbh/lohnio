@@ -24,6 +24,6 @@ final class RoutesTest extends UnitTestCase
     {
         $class = new \ReflectionClass(Routes::class);
 
-        self::assertCount(1, $class->getConstants());
+        self::assertCount(3, $class->getConstants());
     }
 }
