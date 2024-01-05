@@ -6,6 +6,7 @@ namespace App\Routing;
 
 final class Routes
 {
+    public const CONTENT = 'content';
     public const INDEX = 'index';
     public const IMPRESSUM = 'impressum';
     public const DATENSCHUTZ = 'datenschutz';
