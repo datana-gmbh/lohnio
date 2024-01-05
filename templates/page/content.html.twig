@@ -1,0 +1,177 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="pt-14 bg-primary-600 relative" id="top">
+        <div class="mx-auto max-w-5xl px-6 py-24 sm:py-32 lg:px-8 lg:py-20">
+            <div class="mx-auto lg:mx-0 text-center">
+                <h1 class="mt-10 text-white">
+                    Hier wird ein sehr relevantes und aktuelles Thema stehen.
+                </h1>
+                <p class="mt-6 text-white">
+                    Esse id magna consectetur fugiat non dolor in ad laboris
+                    magna laborum ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id.
+                </p>
+                <div class="mt-10 mx-auto">
+                    <a
+                        href="#"
+                        class="relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                    >
+                        Kontaktieren Sie uns noch heute
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% set logos = [
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/8ee9f161-df19-4fa7-a2a6-edf9acf0e0d6?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 1',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/80480f8a-69ad-4c30-88ba-f4e7ee08fc51?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 2',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/140d376c-13f2-4823-b397-b3de733bf560?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 3',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/0ae217f1-b695-4661-bd3d-6440eebc2c5c?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 4',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/67017079-51e1-4245-9bf1-b5957eb66c74?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 5',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/515313ac-7ec9-4c6e-95db-80dac2f8b960?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 6',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c513fc32-3ab9-4cca-911e-0b2642ac7206?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 7',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/5731a5a7-689f-49ae-abf1-6e6dc00c2043?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 8',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/cb51d286-530f-42be-9e91-9c850522f127?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 9',
+        },
+        {
+            image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/44ba8437-f6fd-4a51-bfd3-262d7528f7a4?apiKey=7e8b177c7c374d8abaf3aebf27f1c17d&',
+            alt: 'Logo customer 10',
+        },
+    ] %}
+
+    <div class="bg-primary-50 py-4 px-6">
+        <div class="flex overflow-hidden max-w-4xl mx-auto items-center">
+            <h5 class="text-primary-900 pr-12">Kunden</h5>
+            <div class="flex overflow-hidden space-x-16 max-w-7xl mx-auto group">
+                <div class="flex space-x-16 animate-loop-scroll group-hover:paused">
+                    {% for logo in logos %}
+                        <div class="relative">
+                            <img src="{{ logo.image }}"
+                                 class="max-w-none max-h-12 grayscale brightness-100 contrast-100" alt="{{ logo.alt }}">
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="flex space-x-16 animate-loop-scroll group-hover:paused" aria-hidden="true">
+                    {% for logo in logos %}
+                        <div class="relative">
+                            <img src="{{ logo.image }}"
+                                 class="max-w-none max-h-12 grayscale brightness-100 contrast-100" alt="{{ logo.alt }}">
+                            {# <div class="absolute top-0 left-0 h-full w-full bg-primary-600 opacity-50 mix-blend-overlay"></div> #}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-auto max-w-5xl px-4 py-12">
+        <article class="max-w-none prose-p:font-montserrat prose-p:leading-7 prose-p:text-base prose-p:font-normal prose prose-lg prose-primary prose-headings:font-poppins prose-headings:leading-[3rem] prose-headings:font-semibold prose-h1:text-[2.3rem] sm:prose-h1:text-[2.5rem] prose-h2:text-[2.1rem] sm:prose-h2:text-[2.3rem] prose-h3:text-[1.9rem] sm:prose-h3:text-[2.1rem] prose-h4:text-[1.7rem] sm:prose-h4:text-[1.9rem] prose-h5:text-[1.5rem] sm:prose-h5:text-[1.7rem] prose-h6:text-[1.3rem] sm:prose-h6:text-[1.5rem]">
+            <h1>Welcome to My Website</h1>
+            <p>This is a sample paragraph to demonstrate a typical HTML structure with text and images.</p>
+
+            <img src="https://via.placeholder.com/600x400" alt="Sample Image 1" style="width:100%;height:auto;">
+
+            <h2>About Us</h2>
+            <p>Neque sodales ut etiam sit amet nisl. Odio eu feugiat pretium nibh ipsum consequat. Urna porttitor rhoncus dolor purus non enim. Et netus et malesuada fames ac turpis egestas integer. Ac odio tempor orci dapibus ultrices in iaculis nunc. Quis risus sed vulputate odio ut enim blandit volutpat. Interdum consectetur libero id faucibus nisl. Eu non diam phasellus vestibulum. Libero volutpat sed cras ornare arcu dui. Quis risus sed vulputate odio ut.</p>
+            <p>Morbi leo urna molestie at elementum. Id faucibus nisl tincidunt eget. In egestas erat imperdiet sed euismod nisi. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Ac turpis egestas sed tempus urna et pharetra pharetra. Sit amet luctus venenatis lectus. Amet cursus sit amet dictum sit amet justo donec enim. Lobortis mattis aliquam faucibus purus in massa tempor. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Ac turpis egestas integer eget.</p>
+            <p>Here is some information about our website or company:</p>
+            <ul>
+                <li>Our mission and vision</li>
+                <li>Services or products we offer</li>
+                <li>Contact information</li>
+            </ul>
+
+            <img src="https://via.placeholder.com/600x400" alt="Sample Image 2" style="width:100%;height:auto;">
+
+            <h2>Our Services</h2>
+            <p>Details about the services we provide:</p>
+            <p>Neque sodales ut etiam sit amet nisl. Odio eu feugiat pretium nibh ipsum consequat. Urna porttitor rhoncus dolor purus non enim. Et netus et malesuada fames ac turpis egestas integer. Ac odio tempor orci dapibus ultrices in iaculis nunc. Quis risus sed vulputate odio ut enim blandit volutpat. Interdum consectetur libero id faucibus nisl. Eu non diam phasellus vestibulum. Libero volutpat sed cras ornare arcu dui. Quis risus sed vulputate odio ut.</p>
+            <p>Morbi leo urna molestie at elementum. Id faucibus nisl tincidunt eget. In egestas erat imperdiet sed euismod nisi. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Ac turpis egestas sed tempus urna et pharetra pharetra. Sit amet luctus venenatis lectus. Amet cursus sit amet dictum sit amet justo donec enim. Lobortis mattis aliquam faucibus purus in massa tempor. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Ac turpis egestas integer eget.</p>
+            <p>Neque sodales ut etiam sit amet nisl. Odio eu feugiat pretium nibh ipsum consequat. Urna porttitor rhoncus dolor purus non enim. Et netus et malesuada fames ac turpis egestas integer. Ac odio tempor orci dapibus ultrices in iaculis nunc. Quis risus sed vulputate odio ut enim blandit volutpat. Interdum consectetur libero id faucibus nisl. Eu non diam phasellus vestibulum. Libero volutpat sed cras ornare arcu dui. Quis risus sed vulputate odio ut.</p>
+            <p>Morbi leo urna molestie at elementum. Id faucibus nisl tincidunt eget. In egestas erat imperdiet sed euismod nisi. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Ac turpis egestas sed tempus urna et pharetra pharetra. Sit amet luctus venenatis lectus. Amet cursus sit amet dictum sit amet justo donec enim. Lobortis mattis aliquam faucibus purus in massa tempor. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Ac turpis egestas integer eget.</p>
+            <ol>
+                <li>Service One - Description</li>
+                <li>Service Two - Description</li>
+                <li>Service Three - Description</li>
+            </ol>
+
+            <img src="https://via.placeholder.com/600x400" alt="Sample Image 3" style="width:100%;height:auto;">
+
+            <h2>Contact Us</h2>
+            <p>Neque sodales ut etiam sit amet nisl. Odio eu feugiat pretium nibh ipsum consequat. Urna porttitor rhoncus dolor purus non enim. Et netus et malesuada fames ac turpis egestas integer. Ac odio tempor orci dapibus ultrices in iaculis nunc. Quis risus sed vulputate odio ut enim blandit volutpat. Interdum consectetur libero id faucibus nisl. Eu non diam phasellus vestibulum. Libero volutpat sed cras ornare arcu dui. Quis risus sed vulputate odio ut.</p>
+            <p>Morbi leo urna molestie at elementum. Id faucibus nisl tincidunt eget. In egestas erat imperdiet sed euismod nisi. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Ac turpis egestas sed tempus urna et pharetra pharetra. Sit amet luctus venenatis lectus. Amet cursus sit amet dictum sit amet justo donec enim. Lobortis mattis aliquam faucibus purus in massa tempor. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Ac turpis egestas integer eget.</p>
+            <p>Neque sodales ut etiam sit amet nisl. Odio eu feugiat pretium nibh ipsum consequat. Urna porttitor rhoncus dolor purus non enim. Et netus et malesuada fames ac turpis egestas integer. Ac odio tempor orci dapibus ultrices in iaculis nunc. Quis risus sed vulputate odio ut enim blandit volutpat. Interdum consectetur libero id faucibus nisl. Eu non diam phasellus vestibulum. Libero volutpat sed cras ornare arcu dui. Quis risus sed vulputate odio ut.</p>
+            <p>Morbi leo urna molestie at elementum. Id faucibus nisl tincidunt eget. In egestas erat imperdiet sed euismod nisi. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Ac turpis egestas sed tempus urna et pharetra pharetra. Sit amet luctus venenatis lectus. Amet cursus sit amet dictum sit amet justo donec enim. Lobortis mattis aliquam faucibus purus in massa tempor. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Ac turpis egestas integer eget.</p>
+            <p>Neque sodales ut etiam sit amet nisl. Odio eu feugiat pretium nibh ipsum consequat. Urna porttitor rhoncus dolor purus non enim. Et netus et malesuada fames ac turpis egestas integer. Ac odio tempor orci dapibus ultrices in iaculis nunc. Quis risus sed vulputate odio ut enim blandit volutpat. Interdum consectetur libero id faucibus nisl. Eu non diam phasellus vestibulum. Libero volutpat sed cras ornare arcu dui. Quis risus sed vulputate odio ut.</p>
+            <p>Morbi leo urna molestie at elementum. Id faucibus nisl tincidunt eget. In egestas erat imperdiet sed euismod nisi. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Ac turpis egestas sed tempus urna et pharetra pharetra. Sit amet luctus venenatis lectus. Amet cursus sit amet dictum sit amet justo donec enim. Lobortis mattis aliquam faucibus purus in massa tempor. Aenean sed adipiscing diam donec adipiscing tristique risus nec. Ac turpis egestas integer eget.</p>
+            <p>If you have any questions, please don't hesitate to contact us:</p>
+            <p>Email: contact@example.com</p>
+            <p>Phone: 123-456-7890</p>
+        </article>
+    </div>
+
+    <div class="bg-white">
+        <div class="mx-auto max-w-7xl py-20 px-6">
+            <div
+                class="relative isolate overflow-hidden bg-primary-600 px-6 pt-8 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+                <div class="hidden lg:block">
+                    <img class="absolute -top-5 lg:top-1/2 left-0 max-w-none w-[5rem] md:w-[10rem] lg:w-[10rem]"
+                         src="{{ asset('build/cta-pattern.png') }}" alt="Kreis aus Streifen">
+                </div>
+                <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:text-left py-12">
+                    <h2 class="text-white">
+                        Buchen Sie jetzt Ihre persönliche Demo
+                    </h2>
+                    <div class="mt-10">
+                        <a
+                            href="#"
+                            class="mx-auto relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                        >
+                            Kostenlos buchen
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative h-80">
+                    <img class="absolute -inset-y-20 max-w-none w-[36rem]" src="{{ asset('build/cta-laptop.png') }}"
+                         alt="Kostenlose Demo">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
