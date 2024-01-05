@@ -11,7 +11,7 @@
                     Esse id magna consectetur fugiat non dolor in ad laboris
                     magna laborum ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id.
                 </p>
-                <ul class="mt-6 grid grid-cols-2 gap-4 text-white">
+                <ul class="mt-6 grid gap-4 text-white">
                     <li class="inline-flex">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1 text-secondary-500">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
@@ -243,6 +243,172 @@
                 </div>
                 <div class="relative h-80">
                     <img class="absolute -inset-y-20 max-w-none w-[36rem]" src="{{ asset('build/cta-laptop.png') }}" alt="Kostenlose Demo">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-primary-50 relative isolate overflow-x-hidden" id="testimonials">
+        <img
+            class="-z-10 absolute -left-10 top-24 lg:top-1/4 w-[12rem]"
+            src="{{ asset('build/testimonials/pattern-left.png') }}"
+            alt="Muster Linien"
+        />
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+            <h2 class="text-gray-900 text-center">
+                Kundenmeinungen
+            </h2>
+            <dl class="mt-24 space-y-24 sm:grid sm:grid-cols-1 md:space-y-0 sm:gap-x-6 md:gap-y-20 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-0">
+                <div class="py-10 px-8 bg-white rounded-3xl">
+                    <img
+                        src="{{ asset('build/testimonials/testimonial_1.png') }}"
+                        alt="Testimonial Max Mustermann"
+                        class="mx-auto -mt-20 w-[5rem]"
+                    />
+                    <div class="space-y-4 mt-8 text-gray-600 text-center">
+                        <h5 class="leading-9 text-gray-900">"Lorem ipsum dolor sit ame lor in reprehenit!"</h5>
+                        <p>
+                            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. lor in reprehenderit voluptate velit esse cillum"
+                        </p>
+                        <p class="italic pt-6">
+                            <span class="text-secondary-500 mr-2">──</span> Max Mustermann, Manager
+                        </p>
+                    </div>
+                </div>
+                <div class="py-10 px-8 bg-white rounded-3xl">
+                    <img
+                        src="{{ asset('build/testimonials/testimonial_2.png') }}"
+                        alt="Testimonial Maria Peters"
+                        class="mx-auto -mt-20 w-[5rem]"
+                    />
+                    <div class="space-y-4 mt-8 text-gray-600 text-center">
+                        <h5 class="leading-9 text-gray-900">"Lorem ipsum dolor sit ame lor in reprehenit!"</h5>
+                        <p>
+                            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. lor in reprehenderit voluptate velit esse cillum"
+                        </p>
+                        <p class="italic pt-6">
+                            <span class="text-secondary-500 mr-2">──</span> Maria Peters, CEO
+                        </p>
+                    </div>
+                </div>
+                <div class="py-10 px-8 bg-white rounded-3xl">
+                    <img
+                        src="{{ asset('build/testimonials/testimonial_3.png') }}"
+                        alt="Testimonial Martin Muster"
+                        class="mx-auto -mt-20 w-[5rem]"
+                    />
+                    <div class="space-y-4 mt-8 text-gray-600 text-center">
+                        <h5 class="leading-9 text-gray-900">"Lorem ipsum dolor sit ame lor in reprehenit!"</h5>
+                        <p>
+                            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. lor in reprehenderit voluptate velit esse cillum"
+                        </p>
+                        <p class="italic pt-6">
+                            <span class="text-secondary-500 mr-2">──</span> Martin Muster, Head of HR
+                        </p>
+                    </div>
+                </div>
+            </dl>
+        </div>
+        <img
+            class="-z-10 absolute -right-12 bottom-24 lg:bottom-1/5 w-[12rem]"
+            src="{{ asset('build/testimonials/pattern-right.png') }}"
+            alt="Muster Linien Kreis"
+        />
+    </div>
+
+    {% set faqs = [
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+        {
+            question: 'What&#039;s the best thing about Switzerland?',
+            answer: 'I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.',
+        },
+    ] %}
+
+    <div class="bg-white">
+        <div class="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+            <div class="mx-auto max-w-4xl divide-y divide-gray-900/10">
+                <h2 class="text-gray-900 text-center">
+                    Häufig gestellte Fragen
+                </h2>
+                <dl class="mt-16 space-y-6 divide-y divide-gray-900/10">
+                    {% for faq in faqs %}
+                        <div class="pt-6">
+                            <dt>
+                                <button
+                                    type="button"
+                                    class="accordion-toggle-button flex w-full items-start justify-between text-left text-gray-900"
+                                    data-target-id="faq-{{ loop.index }}"
+                                >
+                                    <h6>{{ faq.question|raw }}</h6>
+                                    <span class="icon ml-6 flex h-7 items-center">
+                                       <svg class="h-6 w-6 text-secondary-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                       </svg>
+                                    </span>
+                                </button>
+                            </dt>
+                            <dd class="mt-2 pr-12 hidden" id="faq-{{ loop.index }}">
+                                <p class="text-gray-600">{{ faq.answer|raw }}</p>
+                            </dd>
+                        </div>
+                    {% endfor %}
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="overflow-hidden bg-primary-50 py-24">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                <div class="lg:ml-auto lg:pl-4 lg:pt-4">
+                    <div class="lg:max-w-lg">
+                        <h2 class="mt-2 text-gray-900">Lorem ipsum, dolor</h2>
+                        <p class="mt-6 text-gray-600">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                        </p>
+                    </div>
+                    <div class="mt-10">
+                        <a
+                            href="#"
+                            class="mx-auto relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                        >
+                            Kontakt
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-start justify-end">
+                    <img src="{{ asset('build/story-2.png') }}" alt="Unsere Geschichte Teil 2" class="w-full">
                 </div>
             </div>
         </div>

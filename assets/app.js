@@ -10,3 +10,5 @@ import './js/navbar/toggle-elements.js'
 
 import './js/scroll/scroll-up-button.js'
 import './js/scroll/scroll-event-binder.js'
+
+import './js/accordion/accordion.js'
