@@ -37,12 +37,12 @@
         ]
     },
     "datana-gmbh/logz-io-handler": {
-        "version": "1.5",
+        "version": "1.7",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
-            "version": "1.0",
-            "ref": "63108fcf536527da43109e86560fe2094c901eee"
+            "version": "1.7",
+            "ref": "64ceb0112a13eac522c85375cdd4356f0fa796fd"
         },
         "files": [
             "config/packages/datana_logz_io_handler.yaml"
