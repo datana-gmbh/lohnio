@@ -27,11 +27,6 @@ final class ContactFormType extends AbstractType
                 'class' => Anrede::class,
                 'placeholder' => 'Keine Angabe',
                 'expanded' => true,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Bitte wählen Sie eine Anrede aus.',
-                    ]),
-                ],
             ])
             ->add('vorname', TextType::class, [
                 'required' => true,
