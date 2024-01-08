@@ -1,31 +1,31 @@
 {% use 'tailwind_2_layout.html.twig' %}
 
-{#{% block form_errors %}#}
-{#    {% if errors|length > 0 %}#}
-{#        {% if compound %}#}
-{#            <ul>#}
-{#                {% for error in errors %}#}
-{#                    <li class="text-red-600">{{ error.message }}</li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#        {% else %}#}
-{#            <p class="mt-2 text-sm text-red-600 inline-flex">#}
-{#                <svg class="h-5 w-5 text-red-500"#}
-{#                     xmlns="http://www.w3.org/2000/svg"#}
-{#                     viewBox="0 0 20 20"#}
-{#                     fill="currentColor"#}
-{#                     aria-hidden="true"#}
-{#                >#}
-{#                    <path fill-rule="evenodd"#}
-{#                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"#}
-{#                          clip-rule="evenodd"#}
-{#                    />#}
-{#                </svg>#}
-{#                {{ errors[0].message }}#}
-{#            </p>#}
-{#        {% endif %}#}
-{#    {% endif %}#}
-{#{% endblock form_errors %}#}
+{# {% block form_errors %} #}
+{# {% if errors|length > 0 %} #}
+{# {% if compound %} #}
+{# <ul> #}
+{# {% for error in errors %} #}
+{# <li class="text-red-600">{{ error.message }}</li> #}
+{# {% endfor %} #}
+{# </ul> #}
+{# {% else %} #}
+{# <p class="mt-2 text-sm text-red-600 inline-flex"> #}
+{# <svg class="h-5 w-5 text-red-500" #}
+{# xmlns="http://www.w3.org/2000/svg" #}
+{# viewBox="0 0 20 20" #}
+{# fill="currentColor" #}
+{# aria-hidden="true" #}
+{# > #}
+{# <path fill-rule="evenodd" #}
+{# d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" #}
+{# clip-rule="evenodd" #}
+{# /> #}
+{# </svg> #}
+{# {{ errors[0].message }} #}
+{# </p> #}
+{# {% endif %} #}
+{# {% endif %} #}
+{# {% endblock form_errors %} #}
 
 {%- block choice_widget_expanded -%}
     {%- set attr = attr|merge({class: attr.class|default('mt-2 space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10')}) -%}
@@ -93,7 +93,6 @@
         {{- form_errors(form) -}}
     </div>
 {% endblock form_row %}
-
 
 {% block textarea_widget %}
     {%- set class = attribute(attr, 'class') is defined ? attr.class : '' %}
