@@ -142,3 +142,9 @@ p {
     content: "*";
     @apply text-secondary-500 ml-1;
 }
+
+/* This is only used for the Honeypot field */
+.faxnummer-row {
+    @apply h-0 w-0 invisible overflow-hidden;
+    margin-top: -0.1rem !important;
+}

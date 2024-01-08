@@ -29,6 +29,12 @@ final class ContactController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $honeypotValue = $form->get('faxnummer')->getData();
+
+            if (null !== $honeypotValue && '' !== $honeypotValue) {
+                return $this->responder->route(Routes::INDEX);
+            }
+
             // @TODO: Post Ticket to Zendesk API
 
             $request->getSession()->getFlashbag()->add(

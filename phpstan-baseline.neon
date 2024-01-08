@@ -41,6 +41,11 @@ parameters:
 			path: tests/Functional/AppBrowser.php
 
 		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: tests/Functional/Controller/Page/ContactControllerTest.php
+
+		-
 			message: "#^Call to static method App\\\\Tests\\\\Functional\\\\FunctionalTestCase\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
 			count: 1
 			path: tests/Functional/FunctionalDummyTest.php

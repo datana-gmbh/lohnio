@@ -60,7 +60,7 @@ final class ContactFormType extends AbstractType
                 ],
                 'constraints' => [
                     new Email([
-                        'mode' => 'strict',
+                        'mode' => Email::VALIDATION_MODE_STRICT,
                     ]),
                 ],
             ])
@@ -72,20 +72,32 @@ final class ContactFormType extends AbstractType
                 ],
             ])
 
-            ->add('nachricht', TextareaType::class, [
+            // This is used as a honeypot. If filled out request will not proceed.
+            ->add('faxnummer', TextType::class, [
                 'required' => false,
+                'label' => 'Faxnummer',
+                'attr' => [
+                    'placeholder' => 'Faxnummer',
+                ],
+            ])
+
+            ->add('nachricht', TextareaType::class, [
+                'required' => true,
                 'label' => 'Nachricht',
                 'attr' => [
                     'placeholder' => 'Nachricht',
                 ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Bitte teilen Sie uns mit worum in Ihrer Kontaktanfrage geht.',
+                    ]),
+                ],
             ])
-
-            ->add('agb', CheckboxType::class, [
-                'mapped' => false,
+            ->add('datenschutz', CheckboxType::class, [
                 'required' => true,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Bitte stimmen Sie unseren AGB zu',
+                        'message' => 'Bitte stimmen Sie unseren Datenschutzbestimmungen zu.',
                     ]),
                 ],
             ]);

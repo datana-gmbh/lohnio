@@ -61,13 +61,17 @@
                 {{ form_row(form.nachricht) }}
             </div>
 
+            <div class="col-span-6 sm:col-span-6 faxnummer-row">
+                {{ form_row(form.faxnummer) }}
+            </div>
+
             <div class="col-span-6 sm:col-span-3">
                 <div class="relative flex items-start">
                     <div class="flex items-center h-5">
-                        {{ form_widget(form.agb, {attr: {class: 'h-4 w-4 text-secondary-600 focus:ring-secondary-500 border-gray-300 rounded'}}) }}
+                        {{ form_widget(form.datenschutz, {attr: {class: 'h-4 w-4 text-secondary-600 focus:ring-secondary-500 border-gray-300 rounded'}}) }}
                     </div>
                     <div class="ml-1 text-sm">
-                        <label for="agb" class="ml-2 block text-sm text-gray-900">
+                        <label for="{{ form.datenschutz.vars.id}}" class="ml-2 block text-sm text-gray-900">
                             Ich habe die
                             <a class="text-primary underline hover:opacity-80"
                                target="_blank"
@@ -78,6 +82,7 @@
                         </label>
                     </div>
                 </div>
+                {{ form_errors(form.datenschutz) }}
             </div>
             <div class="col-span-6 sm:col-span-3">
                 <button
@@ -97,6 +102,5 @@
             </div>
             {{ form_end(form) }}
         </div>
-
     </div>
 {% endblock %}
