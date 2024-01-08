@@ -32,3 +32,17 @@ services:
     # https://symfony.com/doc/current/components/uid.html#generating-and-inspecting-uuids-ulids-in-the-console
     Symfony\Component\Uid\Command\GenerateUlidCommand: ~
     Symfony\Component\Uid\Command\InspectUlidCommand: ~
+
+when@prod:
+    services:
+        App\Api\Zendesk\ZendeskApiInterface: '@App\Api\Zendesk\ZendeskApi'
+
+when@dev:
+    services:
+        App\Api\Zendesk\ZendeskApiInterface: '@App\Api\Zendesk\ZendeskApi'
+
+#        App\Api\Zendesk\ZendeskApiInterface: '@App\Api\Zendesk\NullZendeskApi'
+
+when@test:
+    services:
+        App\Api\Zendesk\ZendeskApiInterface: '@App\Api\Zendesk\NullZendeskApi'

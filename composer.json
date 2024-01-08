@@ -55,7 +55,8 @@
         "symfony/yaml": "^6.4.0",
         "thecodingmachine/safe": "^2.5",
         "twig/twig": "^3.8.0",
-        "webmozart/assert": "^1.11"
+        "webmozart/assert": "^1.11",
+        "zendesk/zendesk_api_client_php": "^3.0"
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^8.0.1",

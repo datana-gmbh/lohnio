@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Page;
 
+use App\Api\Zendesk\ZendeskApiInterface;
+use App\Bridge\Zendesk\Domain\Value\Ticket;
 use App\Domain\Enum\Flashmessage;
 use App\Form\ContactFormType;
 use App\Routing\Routes;
@@ -19,6 +21,7 @@ final class ContactController
     public function __construct(
         private readonly Responder $responder,
         private readonly FormFactoryInterface $formFactory,
+        private readonly ZendeskApiInterface $zendeskApi,
     ) {
     }
 
@@ -35,12 +38,21 @@ final class ContactController
                 return $this->responder->route(Routes::INDEX);
             }
 
-            // @TODO: Post Ticket to Zendesk API
+            //            try {
+            $this->zendeskApi->createTicket(Ticket::fromArray($form->getData()));
 
             $request->getSession()->getFlashbag()->add(
                 Flashmessage::SUCCESS->value,
                 'Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns in kürze bei Ihnen melden.',
             );
+            //            } catch (\Throwable) {
+            //                $request->getSession()->getFlashbag()->add(
+            //                    Flashmessage::ERROR->value,
+            //                    'Entschuldigen Sie bitte! Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
+            //                );
+            //
+            //                return $this->responder->route(Routes::CONTACT);
+            //            }
 
             return $this->responder->route(Routes::INDEX);
         }
