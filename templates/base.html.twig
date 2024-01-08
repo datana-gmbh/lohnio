@@ -22,7 +22,7 @@
         <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
             {% for flashSuccess in app.flashes('user_success') %}
                 <div class="flash-message max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-green-600 ring-opacity-5 overflow-hidden">
-                    <div class="p-6 bg-green-600">
+                    <div class="p-6 bg-green-500">
                         <div class="flex items-start tracking-wide">
                             <div class="flex-shrink-0">
                                 <i class="far fa-check-circle fa-fw text-xl text-green-100"></i>
@@ -51,7 +51,7 @@
 
             {% for flashNotice in app.flashes('user_notice') %}
                 <div class="flash-message max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-yellow-600 ring-opacity-5 overflow-hidden">
-                    <div class="p-6 bg-yellow-600">
+                    <div class="p-6 bg-yellow-500">
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
                                 <i class="far fa-exclamation-triangle fa-fw text-lg text-yellow-100"></i>
@@ -80,7 +80,7 @@
 
             {% for flashError in app.flashes('user_error') %}
                 <div class="flash-message max-w-md w-full shadow-lg rounded-lg pointer-events-auto ring-1 ring-red-600 ring-opacity-5 overflow-hidden">
-                    <div class="p-6 bg-red-700">
+                    <div class="p-6 bg-red-500">
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
                                 <i class="far fa-times-circle fa-fw text-lg text-red-100"></i>
