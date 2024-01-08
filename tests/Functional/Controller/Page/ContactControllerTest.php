@@ -118,8 +118,6 @@ final class ContactControllerTest extends FunctionalTestCase
      */
     public function aNotLoggedInUserCanNotSubmitFormWithoutEmail(): void
     {
-        self::markTestSkipped('This test will fail. Somehow its possible to submit the E-Mailaddress field empty or invalid.');
-
         $faker = self::faker();
 
         $this->browser()
@@ -134,7 +132,32 @@ final class ContactControllerTest extends FunctionalTestCase
             ->checkField('contact_form[datenschutz]')
             ->click('Formular absenden')
             ->assertSuccessful()
-            ->assertOn('/kontakt');
+            ->assertOn('/kontakt')
+            ->assertSee('Bitte geben Sie eine E-Mailadresse ein.');
+    }
+
+    /**
+     * @test
+     */
+    public function aNotLoggedInUserCanNotSubmitFormWithInvalidEmail(): void
+    {
+        $faker = self::faker();
+
+        $this->browser()
+            ->visit('/kontakt')
+            ->assertSuccessful()
+            ->assertSee('Kontaktieren Sie uns')
+            ->selectFieldOptionByEnum('contact_form[anrede]', Anrede::Herr)
+            ->fillField('Vorname', $faker->firstName())
+            ->fillField('Nachname', $faker->lastName())
+            ->fillField('Nachricht', $faker->text())
+            ->fillField('E-Mail', $faker->text())
+            ->fillField('Telefonnummer', $faker->phoneNumber())
+            ->checkField('contact_form[datenschutz]')
+            ->click('Formular absenden')
+            ->assertSuccessful()
+            ->assertOn('/kontakt')
+            ->assertSee('Die E-Mailadresse ist nicht gültig.');
     }
 
     /**

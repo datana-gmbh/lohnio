@@ -59,9 +59,13 @@ final class ContactFormType extends AbstractType
                     'placeholder' => 'E-Mail',
                 ],
                 'constraints' => [
-                    new Email([
-                        'mode' => Email::VALIDATION_MODE_STRICT,
-                    ]),
+                    new NotBlank(
+                        message: 'Bitte geben Sie eine E-Mailadresse ein.',
+                    ),
+                    new Email(
+                        mode: Email::VALIDATION_MODE_STRICT,
+                        message: 'Die E-Mailadresse ist nicht gültig.',
+                    ),
                 ],
             ])
             ->add('telefon', TextType::class, [

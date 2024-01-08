@@ -41,14 +41,6 @@ final class ContactController
                 Flashmessage::SUCCESS->value,
                 'Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns in kürze bei Ihnen melden.',
             );
-            $request->getSession()->getFlashbag()->add(
-                Flashmessage::NOTICE->value,
-                'Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns in kürze bei Ihnen melden.',
-            );
-            $request->getSession()->getFlashbag()->add(
-                Flashmessage::ERROR->value,
-                'Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns in kürze bei Ihnen melden.',
-            );
 
             return $this->responder->route(Routes::INDEX);
         }
