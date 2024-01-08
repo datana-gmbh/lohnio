@@ -4,10 +4,6 @@
     {% block navigation %}
         {% set links = [
             {
-                label: 'Home',
-                path: path(constant('App\\Routing\\Routes::INDEX'), {_fragment: 'top'}),
-            },
-            {
                 label: 'Features',
                 path: path(constant('App\\Routing\\Routes::INDEX'), {_fragment: 'features'}),
             },
@@ -42,9 +38,9 @@
                         </button>
                     </div>
                     <div class="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
-                        <div class="flex flex-shrink-0 items-center">
+                        <a class="flex flex-shrink-0 items-center" href="{{ path(constant('App\\Routing\\Routes::INDEX'), {_fragment: 'top'}) }}">
                             <img class="h-6 w-auto" src="{{ asset('build/logo.png') }}" alt="Lohnio Logo">
-                        </div>
+                        </a>
                         <div class="hidden sm:ml-10 lg:flex sm:space-x-8">
                             {% for link in links %}
                                 <a

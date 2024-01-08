@@ -1,5 +1,22 @@
 {% extends 'layout.html.twig' %}
 
+{% block navigation %}
+    <nav class="bg-white shadow fixed z-10 inset-x-0">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-20 justify-between">
+                <div class="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
+                    <a class="flex flex-shrink-0 items-center" href="{{ path(constant('App\\Routing\\Routes::INDEX'), {_fragment: 'top'}) }}">
+                        <img class="h-6 w-auto" src="{{ asset('build/logo.png') }}" alt="Lohnio Logo">
+                    </a>
+                    <div class="hidden sm:ml-10 lg:flex sm:space-x-8">
+                       <p class="my-auto">Das Portal für Ihre Mitarbeiter:innen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
 {% block content %}
     <div class="pt-14 bg-primary-600 relative xl:hidden" id="top">
         <div class="mx-auto max-w-5xl px-6 py-24 sm:py-32 lg:px-8 lg:py-20">
