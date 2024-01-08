@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return
       }
 
-      if (event.target === button || button.contains(event.target)){
+      if (event.target === button || button.contains(event.target)) {
         return
       }
 

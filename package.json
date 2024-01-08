@@ -7,6 +7,12 @@
         "@tailwindcss/typography": "tailwindcss/typography",
         "autoprefixer": "^10.4.16",
         "core-js": "^3.23.0",
+        "eslint": "^8.56.0",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-import": "^2.29.1",
+        "eslint-plugin-n": "^16.6.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^6.1.1",
         "file-loader": "^6.0.0",
         "postcss": "^8.4.32",
         "postcss-loader": "^7.3.4",
@@ -22,6 +28,8 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "lint:fix": "eslint \"assets/**/*.{ts,vue,js}\" --fix",
+        "lint:script": "eslint \"assets/**/*.{ts,vue,js}\""
     }
 }
