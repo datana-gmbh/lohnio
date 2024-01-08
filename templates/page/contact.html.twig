@@ -1,19 +1,102 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="pt-14 bg-primary-600 relative md:hidden" id="top">
+    <div class="pt-14 bg-primary-600 relative xl:hidden" id="top">
         <div class="mx-auto max-w-5xl px-6 py-24 sm:py-32 lg:px-8 lg:py-20">
             <div class="mx-auto lg:mx-0 text-center">
                 <h1 class="mt-10 text-white">
-                    Kontaktieren Sie uns heute
+                    Kontaktieren Sie uns
                 </h1>
                 <p class="mt-6 text-white">
-                    Esse id magna consectetur fugiat non dolor in ad laboris
-                    magna laborum ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id.
+                    Wir benötigen ein paar Kontaktdaten von Ihnen, damit wir uns umgehend bei Ihnen zurückmelden können.
                 </p>
             </div>
         </div>
     </div>
-    <div class="pt-14 hidden md:block" id="top">
+    <div class="pt-8 xl:pt-32 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 gap-20 pb-12 xl:grid-cols-3">
+            <div class="hidden xl:block relative isolate overflow-hidden bg-primary-600 px-6 py-12 rounded-3xl">
+                <h4 class="text-white">Kontaktieren Sie uns</h4>
+                <p class="text-white mt-4 text-lg">
+                    Wir benötigen ein paar Kontaktdaten von Ihnen, damit wir uns umgehend bei Ihnen zurückmelden können.
+                </p>
+                <div class="grid grid-cols-1 space-y-4 mt-6">
+                    <div class="inline-flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-secondary-500 mr-2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                        <a href="tel:+49 1234568" class="text-white font-montserrat text-base hover:underline">+49 30 14567 4</a>
+                    </div>
+
+                    <div class="inline-flex items-center text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-secondary-500 mr-2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                        </svg>
+
+                        <a href="mailto:info@lohnio.de" class="text-white font-montserrat text-base hover:underline">info@lohnio.de</a>
+                    </div>
+                </div>
+                <img class="absolute -bottom-8 left-0 max-w-none w-[5rem] md:w-[10rem] lg:w-[10rem]" src="{{ asset('build/cta-pattern.png') }}" alt="Kreis aus Streifen">
+                <img class="absolute top-1/3 -bottom-8 -right-10 max-w-none w-[5rem] md:w-[10rem] lg:w-[10rem]" src="{{ asset('build/contact/pattern-right.png') }}" alt="Kreis aus Streifen">
+            </div>
+
+            {{ form_start(form, {attr: {class: 'grid mx-6 md:mx-auto xl:mx-6 max-w-2xl xl:max-w-none grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2'}}) }}
+            <div class="col-span-6 sm:col-span-6">
+                {{ form_row(form.anrede) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                {{ form_row(form.vorname) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                {{ form_row(form.nachname) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                {{ form_row(form.email) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                {{ form_row(form.telefon) }}
+            </div>
+
+            <div class="col-span-6 sm:col-span-6">
+                {{ form_row(form.nachricht) }}
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+                <div class="relative flex items-start">
+                    <div class="flex items-center h-5">
+                        {{ form_widget(form.agb, {attr: {class: 'h-4 w-4 text-secondary-600 focus:ring-secondary-500 border-gray-300 rounded'}}) }}
+                    </div>
+                    <div class="ml-1 text-sm">
+                        <label for="agb" class="ml-2 block text-sm text-gray-900">
+                            Ich habe die
+                            <a class="text-primary underline hover:opacity-80"
+                               target="_blank"
+                               href="{{ path(constant('App\\Routing\\Routes::DATENSCHUTZ')) }}">
+                                Informationen zum Datenschutz
+                            </a>
+                            zur Kenntnis genommen und bin damit Einverstanden.
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                <button
+                    type="submit"
+                    class="w-full relative gap-x-1.5 rounded bg-secondary-500 px-4 py-3.5 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                >
+                    <span class="mx-auto inline-flex items-center">
+                        Formular absenden
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <div class="col-span-6 border-t border-gray-300 py-4 md:px-0 px-6 text-sm text-gray-600">
+                Die mit <span class="text-secondary-500">*</span> Markierten Felder sind Pflichtangaben.
+            </div>
+            {{ form_end(form) }}
+        </div>
+
     </div>
 {% endblock %}

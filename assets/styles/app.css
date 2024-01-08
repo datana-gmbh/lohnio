@@ -137,3 +137,8 @@ h6 {
 p {
     @apply font-montserrat leading-7 text-base font-normal;
 }
+
+.required::after {
+    content: "*";
+    @apply text-secondary-500 ml-1;
+}
