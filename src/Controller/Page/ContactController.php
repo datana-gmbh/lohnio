@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Page;
 
+use App\Domain\Enum\Flashmessage;
 use App\Form\ContactFormType;
 use App\Routing\Routes;
 use OskarStark\Symfony\Http\Responder;
@@ -28,8 +29,14 @@ final class ContactController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
             // @TODO: Post Ticket to Zendesk API
+
+            $request->getSession()->getFlashbag()->add(
+                Flashmessage::SUCCESS->value,
+                'Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns in kürze bei Ihnen melden.',
+            );
+
+            return $this->responder->route(Routes::INDEX);
         }
 
         return $this->responder->render('page/contact.html.twig', [

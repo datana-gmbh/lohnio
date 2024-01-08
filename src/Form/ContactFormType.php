@@ -54,6 +54,7 @@ final class ContactFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
+                'label' => 'E-Mail',
                 'attr' => [
                     'placeholder' => 'E-Mail',
                 ],
