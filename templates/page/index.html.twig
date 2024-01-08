@@ -1,5 +1,9 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}
+    {{ parent() }} | Das Portal für Ihre Mitarbeiter:innen
+{% endblock %}
+
 {% block content %}
     <div class="pt-14 bg-primary-600 relative" id="top">
         <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-20">
@@ -33,7 +37,7 @@
                 </ul>
                 <div class="mt-10 flex items-center gap-x-6">
                     <a
-                        href="#"
+                        href="{{ path(constant('App\\Routing\\Routes::CONTACT')) }}"
                         class="relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
                     >
                         Kontakt
@@ -175,7 +179,7 @@
 
             <div class="mt-24 flex mx-auto">
                 <a
-                    href="#"
+                    href="{{ path(constant('App\\Routing\\Routes::CONTACT')) }}"
                     class="mx-auto relative inline-flex items-center gap-x-1.5 rounded bg-secondary-500 px-4 py-3 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
                 >
                     Kontaktieren Sie uns

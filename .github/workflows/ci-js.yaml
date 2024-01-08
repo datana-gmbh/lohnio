@@ -1,0 +1,115 @@
+name: "JS"
+
+on: # yamllint disable-line rule:truthy
+    pull_request:
+        paths:
+            - ".github/workflows/ci-js.yaml"
+            - "**"
+    push:
+        branches:
+            - "develop"
+            - "master"
+        paths:
+            - ".github/workflows/ci-js.yaml"
+            - "**"
+
+env:
+    DATANA_BOT_EMAIL: "bot@datana.rocks"
+    DATANA_BOT_NAME: "datana-bot"
+
+jobs:
+    coding-standards:
+        name: "Coding Standards"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                node-version:
+                    - "18.12"
+
+                environment:
+                    - "development"
+
+        steps:
+            # workaround for missing secret in fork PRs - see https://github.com/actions/checkout/issues/298
+            # see https://github.com/rectorphp/rector/commit/d395e1c28b8e6a56711dcc2e10490a82965850e4
+            -   if: github.actor != 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v3"
+                with:
+                    ref: "${{ github.head_ref }}"
+                    # Must be used to be able to commit changed files
+                    token: "${{ secrets.DATANA_BOT_TOKEN }}"
+
+            # in forks, the token is not available - so we cannot use it
+            -   if: github.actor == 'dependabot[bot]'
+                name: "Checkout"
+                uses: "actions/checkout@v3"
+                with:
+                    ref: "${{ github.head_ref }}"
+
+            -
+                name: "Install Node.js"
+                uses: "actions/setup-node@v3"
+                with:
+                    node-version: "${{ matrix.node-version }}"
+                    cache: "yarn" # use 'npm' for npm commands
+
+            -
+                name: "Show node version"
+                run: "node --version"
+
+            -
+                name: "Show yarn version"
+                run: "yarn --version"
+
+            -
+                name: "Install dependencies with yarn"
+                run: "yarn install"
+
+            -
+                name: "Run eslint"
+                run: "yarn run lint:fix"
+
+            -
+                name: "Commit files fixed with eslint"
+                uses: "stefanzweifel/git-auto-commit-action@v4.16.0"
+                with:
+                    branch: "${{ github.head_ref }}"
+                    commit_author: "${{ env.DATANA_BOT_NAME }} <${{ env.DATANA_BOT_EMAIL }}>"
+                    commit_message: "Fix: Run 'yarn run cs'"
+                    commit_user_email: "${{ env.DATANA_BOT_EMAIL }}"
+                    commit_user_name: "${{ env.DATANA_BOT_NAME }}"
+
+    build:
+        name: "Build"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            matrix:
+                node-version:
+                    - "18.12"
+
+        steps:
+            -
+                name: "Checkout"
+                uses: "actions/checkout@v3"
+                with:
+                    ref: "${{ github.head_ref }}"
+
+            -
+                name: "Install Node.js"
+                uses: "actions/setup-node@v3"
+                with:
+                    node-version: "${{ matrix.node-version }}"
+                    cache: "yarn" # use 'npm' for npm commands
+
+            -
+                name: "Install dependencies with yarn"
+                run: "yarn install"
+
+            -
+                name: "Build application for production environment with webpack"
+                run: "yarn run build"

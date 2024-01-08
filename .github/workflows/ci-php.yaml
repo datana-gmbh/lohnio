@@ -388,6 +388,29 @@ jobs:
                 run: "vendor/bin/phpunit --testsuite=unit"
 
             -
+                name: "Install Node.js"
+                uses: "actions/setup-node@v3"
+                with:
+                    node-version: "18.12"
+                    cache: "yarn" # use 'npm' for npm commands
+
+            -
+                name: "Show node version"
+                run: "node --version"
+
+            -
+                name: "Show yarn version"
+                run: "yarn --version"
+
+            -
+                name: "Install dependencies with yarn"
+                run: "yarn install"
+
+            -
+                name: "Build application for production environment with webpack"
+                run: "yarn run build"
+
+            -
                 name: "Run integration tests with phpunit/phpunit"
                 run: "vendor/bin/phpunit --testsuite=integration"
 

@@ -1,0 +1,111 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Kontakt | {{ parent() }}
+{% endblock %}
+
+{% block navigation %}
+    <nav class="bg-white shadow fixed z-10 inset-x-0">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-20 justify-between">
+                <div class="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
+                    <a class="flex flex-shrink-0 items-center" href="{{ path(constant('App\\Routing\\Routes::INDEX'), {_fragment: 'top'}) }}">
+                        <img class="h-6 w-auto" src="{{ asset('build/logo.png') }}" alt="Lohnio Logo">
+                    </a>
+                    <div class="hidden sm:ml-10 lg:flex sm:space-x-8">
+                       <p class="my-auto">Das Portal für Ihre Mitarbeiter:innen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="pt-14 bg-primary-600 relative xl:hidden" id="top">
+        <div class="mx-auto max-w-5xl px-6 py-24 sm:py-32 lg:px-8 lg:py-20">
+            <div class="mx-auto lg:mx-0 text-center">
+                <h1 class="mt-10 text-white">
+                    Kontaktieren Sie uns
+                </h1>
+                <p class="mt-6 text-white">
+                    Wir benötigen ein paar Kontaktdaten von Ihnen, damit wir uns umgehend bei Ihnen zurückmelden können.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="pt-8 xl:pt-32 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 gap-20 pb-12 xl:grid-cols-3">
+            <div class="hidden xl:block relative isolate overflow-hidden bg-primary-600 px-6 py-12 rounded-3xl">
+                <h4 class="text-white">Kontaktieren Sie uns</h4>
+                <p class="text-white mt-4 text-lg">
+                    Wir benötigen ein paar Kontaktdaten von Ihnen, damit wir uns umgehend bei Ihnen zurückmelden können.
+                </p>
+                <img class="absolute -bottom-8 left-0 max-w-none w-[5rem] md:w-[10rem] lg:w-[10rem]" src="{{ asset('build/cta-pattern.png') }}" alt="Kreis aus Streifen">
+                <img class="absolute top-1/3 -bottom-8 -right-10 max-w-none w-[5rem] md:w-[10rem] lg:w-[10rem]" src="{{ asset('build/contact/pattern-right.png') }}" alt="Kreis aus Streifen">
+            </div>
+
+            {{ form_start(form, {attr: {class: 'grid mx-6 md:mx-auto xl:mx-6 max-w-2xl xl:max-w-none grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2'}}) }}
+            <div class="col-span-6 sm:col-span-6">
+                {{ form_row(form.anrede) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                {{ form_row(form.vorname) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                {{ form_row(form.nachname) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                {{ form_row(form.email) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                {{ form_row(form.telefon) }}
+            </div>
+
+            <div class="col-span-6 sm:col-span-6">
+                {{ form_row(form.nachricht) }}
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 faxnummer-row">
+                {{ form_row(form.faxnummer) }}
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+                <div class="relative flex items-start">
+                    <div class="flex items-center h-5">
+                        {{ form_widget(form.datenschutz, {attr: {class: 'h-4 w-4 text-secondary-600 focus:ring-secondary-500 border-gray-300 rounded'}}) }}
+                    </div>
+                    <div class="ml-1 text-sm">
+                        <label for="{{ form.datenschutz.vars.id }}" class="ml-2 block text-sm text-gray-900">
+                            Ich habe die
+                            <a class="text-primary underline hover:opacity-80"
+                               target="_blank"
+                               href="{{ path(constant('App\\Routing\\Routes::DATENSCHUTZ')) }}">
+                                Informationen zum Datenschutz
+                            </a>
+                            zur Kenntnis genommen und bin damit Einverstanden.
+                        </label>
+                    </div>
+                </div>
+                {{ form_errors(form.datenschutz) }}
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                <button
+                    type="submit"
+                    class="w-full relative gap-x-1.5 rounded bg-secondary-500 px-4 py-3.5 font-montserrat text-base font-bold text-gray-900 shadow-sm hover:bg-secondary-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-600 transition duration-300"
+                >
+                    <span class="mx-auto inline-flex items-center">
+                        Formular absenden
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <div class="col-span-6 border-t border-gray-300 py-4 md:px-0 px-6 text-sm text-gray-600">
+                Die mit <span class="text-secondary-500">*</span> markierten Felder sind Pflichtangaben.
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
