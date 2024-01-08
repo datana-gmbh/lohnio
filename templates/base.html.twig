@@ -1,19 +1,114 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lohnio{% endblock %}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+    <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start z-50">
+        <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
+            {% for flashSuccess in app.flashes('user_success') %}
+                <div class="flash-message max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-green-600 ring-opacity-5 overflow-hidden">
+                    <div class="p-6 bg-green-500">
+                        <div class="flex items-start tracking-wide">
+                            <div class="flex-shrink-0">
+                                <i class="far fa-check-circle fa-fw text-xl text-green-100"></i>
+                            </div>
+                            <div class="ml-3 w-0 flex-1">
+                                <p class="mt-1 text-sm text-white">
+                                    {{ flashSuccess|raw }}
+                                </p>
+                            </div>
+                            <div class="ml-4 flex-shrink-0 flex">
+                                <button class="bg-transparent rounded-md inline-flex text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                                    <span class="sr-only">Schließen</span>
+                                    <!-- Heroicon name: solid/x -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                         fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% for flashNotice in app.flashes('user_notice') %}
+                <div class="flash-message max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-yellow-600 ring-opacity-5 overflow-hidden">
+                    <div class="p-6 bg-yellow-500">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="far fa-exclamation-triangle fa-fw text-lg text-yellow-100"></i>
+                            </div>
+                            <div class="ml-3 w-0 flex-1 tracking-wide">
+                                <p class="text-sm text-white">
+                                    {{ flashNotice|raw }}
+                                </p>
+                            </div>
+                            <div class="ml-4 flex-shrink-0 flex">
+                                <button class="bg-transparent rounded-md inline-flex text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                                    <span class="sr-only">Schließen</span>
+                                    <!-- Heroicon name: solid/x -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                         fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% for flashError in app.flashes('user_error') %}
+                <div class="flash-message max-w-md w-full shadow-lg rounded-lg pointer-events-auto ring-1 ring-red-600 ring-opacity-5 overflow-hidden">
+                    <div class="p-6 bg-red-500">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="far fa-times-circle fa-fw text-lg text-red-100"></i>
+                            </div>
+                            <div class="ml-3 w-0 flex-1 tracking-wide">
+                                <p class="mt-1 text-sm text-white">
+                                    {{ flashError|raw }}
+                                </p>
+                            </div>
+                            <div class="ml-4 flex-shrink-0 flex">
+                                <button
+                                    class="bg-transparent rounded-md inline-flex text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                                    <span class="sr-only">Schließen</span>
+                                    <!-- Heroicon name: solid/x -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                         fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% block body %}{% endblock %}
+</body>
 </html>

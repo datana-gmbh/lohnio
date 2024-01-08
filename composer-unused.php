@@ -18,6 +18,7 @@ return static fn (Configuration $config): Configuration => $config
     ->addNamedFilter(NamedFilter::fromString('oskarstark/symfony-http-responder'))
     ->addNamedFilter(NamedFilter::fromString('thecodingmachine/safe'))
     ->addNamedFilter(NamedFilter::fromString('webmozart/assert'))
+    ->addNamedFilter(NamedFilter::fromString('egulias/email-validator'))
     ->setAdditionalFilesFor('datana-gmbh/lohnio', [
         __FILE__,
         ...array_merge(

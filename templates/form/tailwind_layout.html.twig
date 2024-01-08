@@ -1,0 +1,102 @@
+{% use 'tailwind_2_layout.html.twig' %}
+
+ {% block form_errors %}
+     {% if errors|length > 0 %}
+         {% if compound %}
+             <ul class="mt-2">
+                 {% for error in errors %}
+                     <li class="text-red-500">{{ error.message }}</li>
+                 {% endfor %}
+             </ul>
+         {% else %}
+             <p class="mt-2 text-sm text-red-500 inline-flex">
+                 <svg class="h-5 w-5 text-red-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                 >
+                     <path fill-rule="evenodd"
+                           d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                           clip-rule="evenodd"
+                     />
+                 </svg>
+                 {{ errors[0].message }}
+             </p>
+         {% endif %}
+     {% endif %}
+ {% endblock form_errors %}
+
+{%- block choice_widget_expanded -%}
+    {%- set attr = attr|merge({class: attr.class|default('mt-2 space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10')}) -%}
+    <div {{ block('widget_container_attributes') }}>
+        {%- for child in form %}
+            <div class="flex items-center">
+                {{- form_widget(child, {
+                    attr: {
+                        class: 'h-4 w-4 border-gray-300 text-secondary-600 focus:ring-secondary-500'
+                    }
+                }) -}}
+                {{- form_label(child, null, {
+                    translation_domain: choice_translation_domain,
+                    label_attr: {
+                        class: 'ml-3 font-poppins block text-gray-900',
+                    },
+                }) -}}
+            </div>
+        {% endfor -%}
+    </div>
+{%- endblock choice_widget_expanded -%}
+
+{%- block form_widget_simple -%}
+    {%- set class = attribute(attr, 'class') is defined ? attr.class : '' %}
+    {%- set class = (class ~ ' appearance-none block w-full py-2.5 px-4 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-secondary-600 focus:border-secondary-600 rounded')|trim %}
+    {%- set attr = attr|merge({class}) -%}
+    {{ parent() }}
+{%- endblock form_widget_simple -%}
+
+{% block form_help -%}
+    {%- set help_attr = help_attr|merge({class: 'text-sm text-gray-500'}) -%}
+    {{ parent() }}
+{%- endblock form_help %}
+
+{% block submit_widget %}
+    {%- set attr = attr|merge({class: 'relative items-center justify-center px-6 py-3 border-2 border-black text-base font-medium rounded-full text-white bg-black hover:opacity-80 sm:px-14 transition ease-in-out duration-100'}) %}
+    {{ parent() }}
+{% endblock submit_widget %}
+
+{% block form_label %}
+    {%- if label is not same as(false) -%}
+        {% if label_attr is not defined or attribute(label_attr, 'class') is not defined %}
+            {% set label_attr = label_attr|merge({'class': 'font-poppins leading-7 text-base font-semibold text-gray-700 tracking-wide'}) %}
+        {% endif %}
+        {{- parent(form) -}}
+    {%- endif -%}
+{% endblock form_label %}
+
+{% block form_row %}
+    {%- if errors|length > 0 -%}
+        {%- set class = attribute(row_attr, 'class') is defined ? row_attr.class : '' %}
+        {%- set class = (class ~ ' has-errors')|trim %}
+        {%- set row_attr = row_attr|merge({class}) %}
+    {%- endif -%}
+
+    <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {{- form_label(form) -}}
+        {%- set widget_attr = {} -%}
+        {%- if help is not empty -%}
+            {%- set widget_attr = {attr: {'aria-describedby': id ~ "_help"}} -%}
+        {%- endif -%}
+
+        {{- form_widget(form, widget_attr) -}}
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{% endblock form_row %}
+
+{% block textarea_widget %}
+    {%- set class = attribute(attr, 'class') is defined ? attr.class : '' %}
+    {%- set class = (class ~ ' appearance-none block w-full py-2.5 px-4 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-secondary-600 focus:border-secondary-600 rounded h-40')|trim %}
+    {%- set attr = attr|merge({class}) -%}
+    {{ parent() }}
+{% endblock %}
