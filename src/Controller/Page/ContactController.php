@@ -38,21 +38,21 @@ final class ContactController
                 return $this->responder->route(Routes::INDEX);
             }
 
-//            try {
-                $this->zendeskApi->createTicket(Ticket::fromArray($form->getData()));
+            //            try {
+            $this->zendeskApi->createTicket(Ticket::fromArray($form->getData()));
 
-                $request->getSession()->getFlashbag()->add(
-                    Flashmessage::SUCCESS->value,
-                    'Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns in kürze bei Ihnen melden.',
-                );
-//            } catch (\Throwable) {
-//                $request->getSession()->getFlashbag()->add(
-//                    Flashmessage::ERROR->value,
-//                    'Entschuldigen Sie bitte! Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
-//                );
-//
-//                return $this->responder->route(Routes::CONTACT);
-//            }
+            $request->getSession()->getFlashbag()->add(
+                Flashmessage::SUCCESS->value,
+                'Vielen Dank! Wir haben Ihre Nachricht erhalten und werden uns in kürze bei Ihnen melden.',
+            );
+            //            } catch (\Throwable) {
+            //                $request->getSession()->getFlashbag()->add(
+            //                    Flashmessage::ERROR->value,
+            //                    'Entschuldigen Sie bitte! Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.',
+            //                );
+            //
+            //                return $this->responder->route(Routes::CONTACT);
+            //            }
 
             return $this->responder->route(Routes::INDEX);
         }
