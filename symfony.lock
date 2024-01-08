@@ -371,6 +371,18 @@
             "ref": "e4da12a48e8138479bd24a675321bcfd84950266"
         }
     },
+    "zendesk/zendesk_api_client_php": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "2.2",
+            "ref": "2aeb1762b9485109074b2ac1e759d37fed5439c5"
+        },
+        "files": [
+            "config/packages/zendesk_api_client.yaml"
+        ]
+    },
     "zenstruck/foundry": {
         "version": "1.31",
         "recipe": {
